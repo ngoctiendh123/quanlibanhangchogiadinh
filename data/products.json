@@ -1,0 +1,102 @@
+[
+  {
+    "id": 1,
+    "name": "Coca Cola Chai 1.5L",
+    "category": "do-uong",
+    "price": 25000,
+    "quantity": 10,
+    "image": "🥤",
+    "description": "Nước ngọt Coca Cola chai lớn 1.5L, mát lạnh, giải khát tuyệt vời.",
+    "featured": false
+  },
+  {
+    "id": 2,
+    "name": "Mì Tôm Hảo Hảo",
+    "category": "do-kho",
+    "price": 3500,
+    "quantity": 10,
+    "image": "🍜",
+    "description": "Mì tôm Hảo Hảo gói nhỏ, tiện lợi, thơm ngon.",
+    "featured": false
+  },
+  {
+    "id": 3,
+    "name": "Bánh Oreo",
+    "category": "banh-keo",
+    "price": 45000,
+    "quantity": 10,
+    "image": "🍪",
+    "description": "Bánh Oreo nhập khẩu, giòn tan, ngọt ngào.",
+    "featured": false
+  },
+  {
+    "id": 4,
+    "name": "Kem Đánh Răng P/S",
+    "category": "do-ve-sinh",
+    "price": 35000,
+    "quantity": 10,
+    "image": "🧴",
+    "description": "Kem đánh răng P/S bảo vệ răng miệng hiệu quả.",
+    "featured": false
+  },
+  {
+    "id": 5,
+    "name": "Trứng Gà Ta",
+    "category": "thuc-pham-tuoi",
+    "price": 3500,
+    "quantity": 10,
+    "image": "🥚",
+    "description": "Trứng gà ta tươi, bổ dưỡng, giá cả hợp lý.",
+    "featured": false
+  },
+  {
+    "id": 6,
+    "name": "Kẹo Dẻo Haribo",
+    "category": "banh-keo",
+    "price": 55000,
+    "quantity": 10,
+    "image": "🍬",
+    "description": "Kẹo dẻo Haribo nhập khẩu, nhiều vị, ngon miệng.",
+    "featured": false
+  },
+  {
+    "id": 7,
+    "name": "Đường Trắng",
+    "category": "gia-vi",
+    "price": 22000,
+    "quantity": 10,
+    "image": "🍯",
+    "description": "Đường trắng tinh khiết, ngọt thanh.",
+    "featured": false
+  },
+  {
+    "id": 8,
+    "name": "Khoai Tây",
+    "category": "thuc-pham-tuoi",
+    "price": 18000,
+    "quantity": 10,
+    "image": "🥔",
+    "description": "Khoai tây tươi, nhiều tinh bột, dễ chế biến.",
+    "featured": false
+  },
+  {
+    "id": 9,
+    "name": "Bia Tiger",
+    "category": "do-uong",
+    "price": 18000,
+    "quantity": 10,
+    "image": "🍺",
+    "description": "Bia Tiger lon 330ml, mát lạnh, giải khát.",
+    "featured": false
+  },
+  {
+    "id": 10,
+    "name": "Nước Rửa Chén Sunlight",
+    "category": "do-ve-sinh",
+    "price": 45000,
+    "quantity": 10,
+    "image": "🧽",
+    "description": "Nước rửa chén Sunlight sạch bóng, thơm mát.",
+    "featured": false
+  }
+]

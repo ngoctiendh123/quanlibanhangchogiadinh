@@ -1,0 +1,457 @@
+/* Cart Section */
+.cart-section {
+    padding: 40px 0;
+    min-height: 60vh;
+}
+
+.cart-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 30px;
+}
+
+.cart-items {
+    background-color: var(--white);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+}
+
+.cart-item {
+    display: flex;
+    gap: 20px;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.cart-item:last-child {
+    border-bottom: none;
+}
+
+.cart-item-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 5px;
+    background-color: var(--bg-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    flex-shrink: 0;
+    overflow: hidden;
+}
+.cart-item-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.cart-item-info {
+    flex: 1;
+}
+
+.cart-item-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.cart-item-category {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    margin-bottom: 10px;
+}
+
+.cart-item-price {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: var(--accent-color);
+    margin-bottom: 10px;
+}
+
+.cart-item-controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.cart-item-quantity {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: 2px solid var(--border-color);
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.cart-item-quantity button {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: var(--text-color);
+    width: 25px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cart-item-quantity input {
+    width: 40px;
+    text-align: center;
+    border: none;
+    font-size: 1rem;
+}
+
+.cart-item-remove {
+    background-color: var(--accent-color);
+    color: var(--white);
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.cart-item-remove:hover {
+    background-color: #c0392b;
+}
+
+.cart-item-total {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--text-color);
+    min-width: 100px;
+    text-align: right;
+}
+
+.cart-summary {
+    background-color: var(--white);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    height: fit-content;
+    position: sticky;
+    top: 90px;
+}
+
+.cart-summary h2 {
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    font-size: 1rem;
+}
+
+.summary-row.total {
+    font-size: 1.25rem;
+    font-weight: bold;
+    padding-top: 15px;
+    border-top: 2px solid var(--border-color);
+    color: var(--accent-color);
+}
+
+.empty-cart {
+    text-align: center;
+    padding: 80px 20px;
+    background-color: var(--white);
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+}
+
+.empty-cart-icon {
+    font-size: 5rem;
+    margin-bottom: 20px;
+}
+
+.empty-cart h2 {
+    margin-bottom: 10px;
+}
+
+.empty-cart p {
+    color: var(--text-light);
+    margin-bottom: 30px;
+}
+
+/* Checkout Section */
+.checkout-section {
+    padding: 40px 0;
+    min-height: 60vh;
+}
+
+.checkout-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.checkout-container .order-summary {
+    max-width: 600px;
+    width: 100%;
+}
+
+.checkout-form {
+    background-color: var(--white);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+}
+
+.checkout-form h2 {
+    margin-bottom: 25px;
+    font-size: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid var(--border-color);
+    border-radius: 5px;
+    font-size: 1rem;
+    font-family: inherit;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.order-summary {
+    background-color: var(--white);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    height: fit-content;
+    position: sticky;
+    top: 90px;
+}
+
+.order-summary h2 {
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+
+.order-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.order-item:last-child {
+    border-bottom: none;
+}
+
+.order-item-info {
+    flex: 1;
+}
+
+.order-item-name {
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.order-item-details {
+    font-size: 0.85rem;
+    color: var(--text-light);
+}
+
+.order-item-price {
+    font-weight: bold;
+    color: var(--accent-color);
+}
+
+/* QR Modal */
+#qrModal {
+    display: none;
+    position: fixed;
+    z-index: 10000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    animation: fadeIn 0.3s ease;
+}
+
+#qrModal.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.qr-modal-content {
+    max-width: 500px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    background-color: var(--white);
+    margin: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    animation: slideDown 0.3s ease;
+    position: relative;
+}
+
+.qr-modal-content .modal-header {
+    position: sticky;
+    top: 0;
+    background-color: var(--white);
+    z-index: 1;
+    border-bottom: 1px solid var(--border-color);
+    padding: 20px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.qr-modal-content .modal-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.qr-modal-content .close {
+    color: var(--text-light);
+    font-size: 2rem;
+    font-weight: bold;
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.3s ease;
+    background: none;
+    border: none;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.qr-modal-content .close:hover {
+    color: var(--text-color);
+}
+
+.qr-content {
+    padding: 30px;
+}
+
+.qr-info {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.qr-amount {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: var(--text-color);
+}
+
+.qr-amount strong {
+    color: var(--accent-color);
+    font-size: 1.75rem;
+    font-weight: bold;
+}
+
+.qr-instruction {
+    color: var(--text-light);
+    font-size: 0.95rem;
+    margin-top: 10px;
+}
+
+.qr-code-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+    background-color: var(--white);
+    border: 2px solid var(--border-color);
+    border-radius: 10px;
+    margin-bottom: 20px;
+    min-height: 280px;
+    box-sizing: border-box;
+}
+
+.qr-code-image {
+    max-width: 100%;
+    max-height: 350px;
+    width: auto;
+    height: auto;
+    display: block;
+    object-fit: contain;
+    margin: 0 auto;
+}
+
+.qr-note {
+    background-color: var(--bg-color);
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.qr-note p {
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    color: var(--text-light);
+    line-height: 1.6;
+}
+
+.qr-note p:last-child {
+    margin-bottom: 0;
+}
+
+.qr-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.qr-actions .btn {
+    flex: 1;
+    max-width: 200px;
+    padding: 12px 20px;
+}
+
+/* Animations for QR Modal */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
