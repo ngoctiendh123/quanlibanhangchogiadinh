@@ -12,7 +12,7 @@ const CUSTOMERS_FILE = path.join(__dirname, 'data', 'customers.json');
 
 // Khóa API cho trợ lý nấu ăn (Gemini) — ưu tiên biến môi trường, nếu không có thì dùng giá trị mặc định bên dưới.
 // LƯU Ý: Nếu public code, cần xóa khóa API này và chỉ cấu hình qua biến môi trường.
-const GEMINI_API_KEY = process.env.GEMINI_API_KEY || 'AIzaSyB2D25EzywqU3tpHPPBOK9tK6ony0xgMsA';
+const GEMINI_API_KEY = process.env.GEMINI_API_KEY || '';
 
 // Khởi tạo client Gemini cho trợ lý nấu ăn
 const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
