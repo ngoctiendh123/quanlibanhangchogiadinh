@@ -217,6 +217,12 @@ function getCategoryName(category) {
     return categories[category] || category;
 }
 
+// Trạng thái đơn hàng
+function getOrderStatusLabel(status) {
+    const map = { pending: 'Chờ xử lý', shipped: 'Đang giao', delivered: 'Thành công' };
+    return map[status] || 'Chờ xử lý';
+}
+
 // Initialize on page load
 document.addEventListener('DOMContentLoaded', () => {
     initializeProducts();

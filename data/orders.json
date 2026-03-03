@@ -1,2 +1,181 @@
 [
+  {
+    "id": 1772426835077,
+    "date": "2026-03-02T04:47:15.077Z",
+    "items": [
+      {
+        "id": 4,
+        "quantity": 4
+      }
+    ],
+    "total": 140000,
+    "paymentMethod": "Thanh toán khi nhận hàng",
+    "status": "delivered",
+    "customerId": 1,
+    "customer": {
+      "name": "nguyễn ngọc tiến",
+      "phone": "0363048636",
+      "address": "39 đồng lễ"
+    }
+  },
+  {
+    "id": 1772427060969,
+    "date": "2026-03-02T04:51:00.969Z",
+    "items": [
+      {
+        "id": 1,
+        "quantity": 3
+      },
+      {
+        "id": 2,
+        "quantity": 3
+      }
+    ],
+    "total": 85500,
+    "paymentMethod": "Thanh toán tại quầy",
+    "status": "delivered",
+    "customerId": null,
+    "customer": {
+      "name": "",
+      "phone": "",
+      "address": ""
+    }
+  },
+  {
+    "id": 1772427469370,
+    "date": "2026-03-02T04:57:49.370Z",
+    "items": [
+      {
+        "id": 6,
+        "quantity": 2
+      }
+    ],
+    "total": 110000,
+    "paymentMethod": "Thanh toán tại quầy",
+    "status": "delivered",
+    "customerId": null,
+    "customer": {
+      "name": "",
+      "phone": "",
+      "address": ""
+    }
+  },
+  {
+    "id": 1772427647726,
+    "date": "2026-03-02T05:00:47.726Z",
+    "items": [
+      {
+        "id": 1,
+        "quantity": 2
+      }
+    ],
+    "total": 50000,
+    "paymentMethod": "Thanh toán tại quầy",
+    "status": "delivered",
+    "customerId": null,
+    "customer": {
+      "name": "",
+      "phone": "",
+      "address": ""
+    }
+  },
+  {
+    "id": 1772427678278,
+    "date": "2026-03-02T05:01:18.278Z",
+    "items": [
+      {
+        "id": 1,
+        "quantity": 3
+      }
+    ],
+    "total": 75000,
+    "paymentMethod": "Thanh toán tại quầy",
+    "status": "delivered",
+    "customerId": null,
+    "customer": {
+      "name": "",
+      "phone": "",
+      "address": ""
+    }
+  },
+  {
+    "id": 1772428553332,
+    "date": "2026-03-02T05:15:53.332Z",
+    "items": [
+      {
+        "id": 3,
+        "quantity": 2
+      },
+      {
+        "id": 4,
+        "quantity": 3
+      }
+    ],
+    "total": 195000,
+    "paymentMethod": "Thanh toán khi nhận hàng",
+    "status": "delivered",
+    "customerId": 1,
+    "customer": {
+      "name": "nguyễn ngọc tiến",
+      "phone": "0363048636",
+      "address": "39 đồng lễ"
+    }
+  },
+  {
+    "id": 1772428830084,
+    "date": "2026-03-02T05:20:30.084Z",
+    "items": [
+      {
+        "id": 1,
+        "quantity": 6
+      }
+    ],
+    "total": 150000,
+    "paymentMethod": "Thanh toán khi nhận hàng",
+    "status": "delivered",
+    "customerId": 2,
+    "customer": {
+      "name": "nguyễn ngọc tiến",
+      "phone": "0945768636",
+      "address": "39 hạc thành"
+    }
+  },
+  {
+    "id": 1772429596300,
+    "date": "2026-03-02T05:33:16.300Z",
+    "items": [
+      {
+        "id": 2,
+        "quantity": 4
+      }
+    ],
+    "total": 14000,
+    "paymentMethod": "Thanh toán khi nhận hàng",
+    "status": "delivered",
+    "customerId": 2,
+    "customer": {
+      "name": "nguyễn ngọc tiến",
+      "phone": "0945768636",
+      "address": "39 hạc thành"
+    }
+  },
+  {
+    "id": 1772474095629,
+    "date": "2026-03-02T17:54:55.629Z",
+    "items": [
+      {
+        "id": 1,
+        "quantity": 2
+      }
+    ],
+    "total": 50000,
+    "paymentMethod": "Thanh toán khi nhận hàng",
+    "status": "pending",
+    "customerId": 1,
+    "customer": {
+      "name": "nguyễn ngọc tiến",
+      "phone": "0363048636",
+      "address": "39 đồng lễ"
+    }
+  }
 ]

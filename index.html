@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tạp Hóa Gia Đình - Mua sắm online</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/products.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <!-- Chat AI trợ lý nấu ăn (chỉ trên trang chủ) -->
+    <style>
+        .ai-chat-widget {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            z-index: 999;
+            font-family: inherit;
+        }
+
+        .ai-chat-toggle {
+            border: none;
+            border-radius: 999px;
+            padding: 10px 18px;
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            color: #fff;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(22, 163, 74, 0.4);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .ai-chat-toggle span {
+            font-size: 1.1rem;
+        }
+
+        .ai-chat-box {
+            position: absolute;
+            right: 0;
+            bottom: 60px;
+            width: 380px;
+            max-height: 520px;
+            border-radius: 18px;
+            background: #0b1120;
+            border: 1px solid #22c55e33;
+            box-shadow: 0 20px 40px rgba(15, 23, 42, 0.7);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .ai-chat-box.visible {
+            display: flex;
+        }
+
+        .ai-chat-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 14px;
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            color: #ecfdf5;
+        }
+
+        .ai-chat-header-title {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .ai-chat-header-title strong {
+            font-size: 0.95rem;
+        }
+
+        .ai-chat-header-title span {
+            font-size: 0.75rem;
+            opacity: 0.9;
+        }
+
+        .ai-chat-close {
+            border: none;
+            background: transparent;
+            color: #ecfdf5;
+            font-size: 1.1rem;
+            cursor: pointer;
+        }
+
+        .ai-chat-messages {
+            padding: 10px 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            overflow-y: auto;
+            flex: 1;
+            background: radial-gradient(circle at top left, #064e3b 0, #020617 45%, #020617 100%);
+        }
+
+        .ai-chat-message {
+            max-width: 95%;
+            padding: 10px 12px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            white-space: pre-wrap;
+        }
+
+        .ai-chat-message.user {
+            align-self: flex-end;
+            background: #22c55e;
+            color: #022c22;
+            border-bottom-right-radius: 4px;
+        }
+
+        .ai-chat-message.bot {
+            align-self: flex-start;
+            background: #020617cc;
+            color: #e2e8f0;
+            border-bottom-left-radius: 4px;
+            border: 1px solid #22c55e33;
+        }
+
+        .ai-chat-input {
+            padding: 8px;
+            border-top: 1px solid #1e293b;
+            background: #020617;
+            display: flex;
+            gap: 6px;
+        }
+
+        .ai-chat-input input {
+            flex: 1;
+            border-radius: 999px;
+            border: 1px solid #1e293b;
+            background: #020617;
+            color: #e2e8f0;
+            padding: 10px 14px;
+            font-size: 0.9rem;
+        }
+
+        .ai-chat-input input::placeholder {
+            color: #64748b;
+        }
+
+        .ai-chat-input button {
+            border-radius: 999px;
+            border: none;
+            padding: 10px 14px;
+            background: #22c55e;
+            color: #022c22;
+            font-size: 0.86rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .ai-chat-input button:disabled {
+            opacity: 0.6;
+            cursor: default;
+        }
+
+        @media (max-width: 480px) {
+            .ai-chat-box {
+                width: 100vw;
+                right: -12px;
+                bottom: 70px;
+                border-radius: 18px 18px 0 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header id="header"></header>
+
+    <section class="hero" style="padding: 80px 20px;">
+        <div class="container">
+            <div class="hero-content">
+                <h1>🛒 Tạp Hóa Gia Đình</h1>
+                <p>Mua sắm tạp hóa online - Giao hàng tận nhà</p>
+                <a href="products.html" class="btn btn-primary">Mua sắm ngay</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="categories" style="padding: 60px 0; background: #fff;">
+        <div class="container">
+            <h2 class="section-title">Sản phẩm nổi bật</h2>
+            <div class="products-grid" id="featuredProducts">
+                <!-- Load bằng JS -->
+            </div>
+            <p class="text-center" style="margin-top: 1.5rem;">
+                <a href="products.html" class="btn btn-secondary">Xem tất cả sản phẩm</a>
+            </p>
+        </div>
+    </section>
+
+    <!-- Chat AI trợ lý nấu ăn -->
+    <div class="ai-chat-widget">
+        <button type="button" class="ai-chat-toggle" id="aiChatToggle">
+            <span>🤖</span>
+            <span>Hỏi trợ lý nấu ăn</span>
+        </button>
+        <div class="ai-chat-box" id="aiChatBox">
+            <div class="ai-chat-header">
+                <div class="ai-chat-header-title">
+                    <strong>Trợ lý nấu ăn</strong>
+                    <span>Gợi ý món ăn & cách chế biến</span>
+                </div>
+                <button type="button" class="ai-chat-close" id="aiChatClose">&times;</button>
+            </div>
+            <div class="ai-chat-messages" id="aiChatMessages">
+                <div class="ai-chat-message bot">
+                    Xin chào! Bạn cho mình biết đang có những nguyên liệu gì (ví dụ: thịt bò, rau muống, trứng...) mình gợi ý món và cách nấu nhé.
+                </div>
+            </div>
+            <div class="ai-chat-input">
+                <input type="text" id="aiChatInput" placeholder="Nhập nguyên liệu hoặc món bạn muốn nấu...">
+                <button type="button" id="aiChatSend">Gửi</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Về Chúng Tôi</h3>
+                    <p>Tạp hóa gia đình - Nơi tin cậy cho mọi gia đình Việt Nam</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Liên Hệ</h3>
+                    <p>📞 Hotline: 1900-xxxx</p>
+                    <p>📧 Email: info@taphoagiadinh.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Tạp Hóa Gia Đình.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/utils.js"></script>
+    <script src="js/products.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var currentPage = window.location.pathname.split('/').pop() || '';
+            if (currentPage === 'index.html' || currentPage === '' || currentPage === 'index') {
+                if (typeof loadFeaturedProducts === 'function') loadFeaturedProducts();
+            }
+
+            // Chat AI trợ lý nấu ăn
+            var chatToggle = document.getElementById('aiChatToggle');
+            var chatBox = document.getElementById('aiChatBox');
+            var chatClose = document.getElementById('aiChatClose');
+            var chatMessages = document.getElementById('aiChatMessages');
+            var chatInput = document.getElementById('aiChatInput');
+            var chatSend = document.getElementById('aiChatSend');
+            var isSending = false;
+            var API_BASE = window.location.origin;
+
+            function appendMessage(text, from) {
+                var div = document.createElement('div');
+                div.className = 'ai-chat-message ' + (from === 'user' ? 'user' : 'bot');
+                div.textContent = text;
+                chatMessages.appendChild(div);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+
+            async function sendMessage() {
+                var text = (chatInput.value || '').trim();
+                if (!text || isSending) return;
+                appendMessage(text, 'user');
+                chatInput.value = '';
+                isSending = true;
+                chatSend.disabled = true;
+
+                var loadingText = 'Đang gợi ý món ăn cho bạn...';
+                var loadingEl = document.createElement('div');
+                loadingEl.className = 'ai-chat-message bot';
+                loadingEl.textContent = loadingText;
+                chatMessages.appendChild(loadingEl);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+
+                try {
+                    var res = await fetch(API_BASE + '/api/chat-cook', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ message: text })
+                    });
+                    var data = await res.json();
+                    chatMessages.removeChild(loadingEl);
+                    if (res.ok && data && data.reply) {
+                        appendMessage(data.reply, 'bot');
+                    } else {
+                        appendMessage(data && data.error ? data.error : 'Xin lỗi, hiện chưa trả lời được. Bạn thử lại sau nhé.', 'bot');
+                    }
+                } catch (e) {
+                    if (chatMessages.contains(loadingEl)) {
+                        chatMessages.removeChild(loadingEl);
+                    }
+                    appendMessage('Có lỗi khi kết nối trợ lý nấu ăn. Bạn thử lại sau nhé.', 'bot');
+                } finally {
+                    isSending = false;
+                    chatSend.disabled = false;
+                    chatInput.focus();
+                }
+            }
+
+            if (chatToggle && chatBox) {
+                chatToggle.addEventListener('click', function() {
+                    chatBox.classList.toggle('visible');
+                    if (chatBox.classList.contains('visible')) {
+                        setTimeout(function() { chatInput && chatInput.focus(); }, 150);
+                    }
+                });
+            }
+
+            if (chatClose) {
+                chatClose.addEventListener('click', function() {
+                    chatBox.classList.remove('visible');
+                });
+            }
+
+            if (chatSend && chatInput) {
+                chatSend.addEventListener('click', sendMessage);
+                chatInput.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        sendMessage();
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

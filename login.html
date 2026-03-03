@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng nhập / Đăng ký - Tạp Hóa Gia Đình</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/auth.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body class="auth-body">
+    <!-- Header -->
+    <header id="header"></header>
+
+    <!-- Auth Section -->
+    <section class="auth-section">
+        <div class="container">
+            <div class="auth-wrapper">
+                <div class="auth-card">
+                    <h1 class="page-title auth-title">Tài khoản của bạn</h1>
+                   
+                    <div class="auth-toggle">
+                        <button type="button" class="auth-mode-btn active" data-mode="login" id="loginModeBtn">Đăng nhập</button>
+                        <button type="button" class="auth-mode-btn" data-mode="register" id="registerModeBtn">Đăng ký</button>
+                    </div>
+
+                    <!-- Form đăng nhập (tự nhận biết admin / khách) -->
+                    <form id="unifiedLoginForm" class="auth-form">
+                        <div class="form-group">
+                            <label for="loginIdentifier">Tên tài khoản (SĐT hoặc email) </label>
+                            <input type="text" id="loginIdentifier" required autocomplete="username">
+                        </div>
+                        <div class="form-group">
+                            <label for="loginPassword">Mật khẩu</label>
+                            <div class="password-input-wrap">
+                                <input type="password" id="loginPassword" required autocomplete="current-password">
+                                <button type="button" class="password-toggle" onclick="togglePasswordVisibility('loginPassword', this)" title="Hiện mật khẩu" aria-label="Hiện mật khẩu">👁</button>
+                            </div>
+                        </div>
+                        <div class="form-actions auth-actions">
+                            <button type="submit" class="btn btn-primary btn-block">Đăng nhập</button>
+                        </div>
+                        <div class="auth-google">
+                            <button type="button" class="btn btn-secondary btn-block" id="customerGoogleBtn">
+                                Đăng nhập bằng Google (demo)
+                            </button>
+                        </div>
+                    </form>
+
+                    <!-- Form đăng ký khách hàng: chỉ tên tài khoản (SĐT hoặc email) + mật khẩu -->
+                    <form id="customerRegisterForm" class="auth-form" style="display: none;">
+                        <div class="form-group">
+                            <label for="customerUsername">Tên tài khoản (SĐT hoặc email)</label>
+                            <input type="text" id="customerUsername" required placeholder="Nhập số điện thoại hoặc email" autocomplete="username">
+                        </div>
+                        <div class="form-group">
+                            <label for="customerPassword">Mật khẩu</label>
+                            <div class="password-input-wrap">
+                                <input type="password" id="customerPassword" required autocomplete="new-password">
+                                <button type="button" class="password-toggle" onclick="togglePasswordVisibility('customerPassword', this)" title="Hiện mật khẩu" aria-label="Hiện mật khẩu">👁</button>
+                            </div>
+                        </div>
+                        <div class="form-actions auth-actions">
+                            <button type="submit" class="btn btn-primary btn-block">Đăng ký</button>
+                        </div>
+                        <p class="auth-hint-small">Sau khi đăng ký, vào trang <strong>Tài khoản</strong> để bổ sung họ tên, SĐT, địa chỉ giao hàng.</p>
+                    </form>
+
+                    <p id="authError" class="auth-error" style="display: none;"></p>
+
+                    <p class="auth-hint">
+                        Bạn chỉ muốn xem sản phẩm? Hãy quay lại
+                        <a href="products.html">trang Sản phẩm</a>.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Về Chúng Tôi</h3>
+                    <p>Siêu thị tạp hóa gia đình - Nơi tin cậy cho mọi gia đình Việt Nam</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Liên Hệ</h3>
+                    <p>📞 Hotline: 1900-xxxx</p>
+                    <p>📧 Email: info@taphoagiadinh.com</p>
+                    <p>📍 Địa chỉ: 123 Đường ABC, Quận XYZ, TP.HCM</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Giờ Mở Cửa</h3>
+                    <p>Thứ 2 - Chủ Nhật: 7:00 - 22:00</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Siêu Thị Tạp Hóa Gia Đình. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/utils.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
+

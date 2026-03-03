@@ -1,0 +1,227 @@
+/* ========== Trang Tài khoản khách hàng - Giao diện chuyên nghiệp ========== */
+
+.customer-page-section {
+    padding: 48px 20px 64px;
+    min-height: calc(100vh - 200px);
+    background: linear-gradient(180deg, #f0f7f4 0%, var(--bg-color) 100%);
+}
+
+.customer-page-section .auth-wrapper {
+    max-width: 780px !important;
+    margin: 0 auto;
+}
+
+/* Card chính */
+.customer-card {
+    background: var(--white);
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06), 0 2px 8px rgba(0, 0, 0, 0.04);
+    padding: 40px 36px 44px;
+    border: 1px solid rgba(46, 204, 113, 0.12);
+    overflow: hidden;
+}
+
+.customer-card .auth-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: 8px;
+    text-align: left;
+    letter-spacing: -0.02em;
+}
+
+.customer-card .auth-hint-small {
+    margin-bottom: 28px;
+    font-size: 0.95rem;
+    color: var(--text-light);
+    line-height: 1.5;
+}
+
+/* Banner gợi ý từ giỏ hàng */
+.customer-from-cart-hint {
+    display: block;
+    background: linear-gradient(135deg, #e8f5e9 0%, #f1f8e9 100%);
+    border: 1px solid rgba(46, 204, 113, 0.35);
+    color: var(--text-color);
+    padding: 16px 20px;
+    border-radius: 12px;
+    margin-bottom: 24px;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    box-shadow: 0 2px 8px rgba(46, 204, 113, 0.08);
+}
+
+.customer-from-cart-hint a {
+    color: var(--primary-color);
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+}
+
+.customer-from-cart-hint a:hover {
+    border-bottom-color: var(--primary-color);
+}
+
+/* Form thông tin */
+.customer-card .auth-form .form-group {
+    margin-bottom: 20px;
+}
+
+.customer-card .auth-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--text-color);
+}
+
+.customer-card .auth-form input,
+.customer-card .auth-form textarea {
+    width: 100%;
+    padding: 14px 16px;
+    border: 2px solid var(--border-color);
+    border-radius: 10px;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.customer-card .auth-form input:focus,
+.customer-card .auth-form textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 4px rgba(46, 204, 113, 0.12);
+}
+
+.customer-card .auth-form textarea {
+    resize: vertical;
+    min-height: 96px;
+}
+
+.customer-card .form-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 28px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border-color);
+}
+
+.customer-card .form-actions .btn-primary {
+    padding: 14px 28px;
+    border-radius: 10px;
+    font-size: 1rem;
+}
+
+.customer-card .form-actions .btn-secondary {
+    padding: 14px 24px;
+    border-radius: 10px;
+    font-size: 1rem;
+}
+
+#customerProfileMessage {
+    margin-top: 16px;
+    padding: 12px 16px;
+    border-radius: 10px;
+    font-size: 0.9rem;
+}
+
+/* Tiêu đề lịch sử đơn hàng */
+.customer-card .customer-orders-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-color);
+    margin-top: 40px;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--border-color);
+}
+
+#customerOrdersEmpty {
+    padding: 24px 20px;
+    text-align: center;
+    color: var(--text-light);
+    font-size: 0.95rem;
+    background: var(--bg-color);
+    border-radius: 10px;
+    margin-bottom: 16px;
+}
+
+/* Bảng lịch sử đơn hàng */
+.customer-orders-table-wrap {
+    overflow-x: auto;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    background: var(--white);
+}
+
+.customer-orders-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+}
+
+.customer-orders-table thead {
+    background: linear-gradient(135deg, #f8fbf9 0%, var(--bg-color) 100%);
+}
+
+.customer-orders-table th {
+    padding: 14px 16px;
+    text-align: left;
+    font-weight: 600;
+    color: var(--text-color);
+    border-bottom: 2px solid var(--border-color);
+}
+
+.customer-orders-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--border-color);
+    vertical-align: middle;
+}
+
+.customer-orders-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.customer-orders-table tbody tr:hover {
+    background: #fafcfb;
+}
+
+.customer-orders-table tbody tr:nth-child(even) {
+    background: #fcfdfc;
+}
+
+.customer-orders-table tbody tr:nth-child(even):hover {
+    background: #fafcfb;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .customer-page-section {
+        padding: 28px 16px 48px;
+    }
+
+    .customer-card {
+        padding: 28px 20px 32px;
+        border-radius: 12px;
+    }
+
+    .customer-card .auth-title {
+        font-size: 1.4rem;
+    }
+
+    .customer-card .form-actions {
+        flex-direction: column;
+    }
+
+    .customer-card .form-actions .btn {
+        width: 100%;
+    }
+
+    .customer-orders-table th,
+    .customer-orders-table td {
+        padding: 10px 12px;
+        font-size: 0.875rem;
+    }
+}

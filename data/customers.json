@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "username": "0363048636",
+    "name": "nguyễn ngọc tiến",
+    "phone": "0363048636",
+    "password": "123456",
+    "address": "39 đồng lễ",
+    "email": "adasdsa@gmail.com",
+    "createdAt": "2026-03-02T04:46:45.912Z"
+  },
+  {
+    "id": 2,
+    "username": "0945768636",
+    "name": "nguyễn ngọc tiến",
+    "phone": "0945768636",
+    "password": "123456",
+    "address": "39 hạc thành",
+    "email": "asda3ea@gmail.com",
+    "createdAt": "2026-03-02T05:20:08.047Z"
+  }
+]

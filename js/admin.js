@@ -1,18 +1,113 @@
-// Admin Management
+// Admin Management & Auth
 
 let editingProductId = null;
 
-// Load admin page
-async function loadAdminPage() {
-    await initializeProducts();
-    initProductImageInputs();
-    renderAdminProductsList();
-    setupAdminFilters();
-    // Mở thẳng tab Doanh thu nếu vào bằng link ?tab=revenue
-    const tab = (new URLSearchParams(window.location.search)).get('tab');
-    if (tab === 'revenue') {
-        switchAdminTab('revenue');
+// Kiểm tra đăng nhập admin và khởi tạo trang
+async function initAdminPage() {
+    const adminApp = document.getElementById('adminApp');
+    if (adminApp) {
+        adminApp.style.display = 'none';
     }
+
+    try {
+        const res = await fetch(`${API_BASE}/api/admin/me`);
+        if (res.ok) {
+            const user = await res.json();
+            if (user && user.role === 'admin') {
+                if (adminApp) adminApp.style.display = 'block';
+                await loadAdminPage();
+                return;
+            }
+        }
+    } catch (e) {
+        // Nếu lỗi, coi như chưa đăng nhập và chuyển hướng sang trang login
+        console.error(e);
+    }
+
+    // Chưa đăng nhập admin: chuyển sang trang đăng nhập
+    const redirect = encodeURIComponent(window.location.pathname + window.location.search);
+    window.location.href = `login.html?redirect=${redirect}`;
+}
+
+// Đăng xuất admin
+async function handleAdminLogout() {
+    try {
+        await fetch(`${API_BASE}/api/logout`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' }
+        });
+    } catch (e) {
+        console.error(e);
+    }
+
+    // Xóa cache sản phẩm để tránh hiển thị dữ liệu cũ
+    localStorage.removeItem('products');
+    showNotification('Đã đăng xuất admin');
+    window.location.href = 'products.html';
+}
+
+// Load admin page (sau khi đã xác thực) — phân nhánh theo trang
+async function loadAdminPage() {
+    const page = (window.location.pathname.split('/').pop() || '').toLowerCase();
+    await initializeProducts();
+
+    if (page === 'admin-products.html') {
+        window.location.href = 'admin.html';
+        return;
+    }
+    if (page === 'admin-revenue.html') {
+        window.location.href = 'admin.html';
+        return;
+    }
+    if (page === 'admin-counter.html') {
+        window.location.href = 'admin.html';
+        return;
+    }
+    // admin.html — trang gộp 3 section
+    renderAdminProductsList();
+    initProductImageInputs();
+    setupAdminFilters();
+    await loadRevenue();
+    updateAdminPendingNotification();
+    renderCounterOrderForm();
+    switchAdminTab('products'); // mặc định mở tab Sản phẩm
+}
+
+// Cuộn tới phần đơn hàng
+function scrollToOrders() {
+    const el = document.getElementById('adminOrdersSection');
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+}
+
+// Chuyển sang tab Doanh thu và cuộn tới đơn hàng (dùng cho nút "Xem ngay")
+function goToRevenueOrders() {
+    switchAdminTab('revenue');
+    setTimeout(() => scrollToOrders(), 150);
+}
+
+// Thông báo đơn hàng mới cần xử lý
+async function updateAdminPendingNotification() {
+    try {
+        const res = await fetch(`${API_BASE}/api/orders/pending-count`);
+        if (!res.ok) return;
+        const { count } = await res.json();
+        const alertEl = document.getElementById('adminNewOrderAlert');
+        const badgeEl = document.getElementById('revenuePendingBadge');
+        const countEl = document.getElementById('pendingOrdersCount');
+        if (count > 0) {
+            if (alertEl) {
+                alertEl.style.display = 'flex';
+            }
+            if (badgeEl) {
+                badgeEl.textContent = count;
+                badgeEl.style.display = 'inline-flex';
+            }
+            if (countEl) countEl.textContent = count;
+        } else {
+            if (alertEl) alertEl.style.display = 'none';
+            if (badgeEl) badgeEl.style.display = 'none';
+        }
+    } catch (e) {}
 }
 
 // Render admin products list
@@ -274,12 +369,14 @@ async function deleteProduct(productId) {
 function setupAdminFilters() {
     const searchInput = document.getElementById('adminSearch');
     const categoryFilter = document.getElementById('adminCategoryFilter');
+    const lowStockCheckbox = document.getElementById('adminLowStockOnly');
     
     if (!searchInput || !categoryFilter) return;
     
     function applyFilters() {
         const searchTerm = searchInput.value.trim().toLowerCase();
         const category = categoryFilter.value;
+        const lowStockOnly = lowStockCheckbox ? lowStockCheckbox.checked : false;
         
         const products = getProducts();
         let filtered = products;
@@ -294,12 +391,19 @@ function setupAdminFilters() {
         if (category) {
             filtered = filtered.filter(product => product.category === category);
         }
+
+        if (lowStockOnly) {
+            filtered = filtered.filter(product => (product.quantity ?? 0) <= 5);
+        }
         
         renderAdminProductsList(filtered);
     }
     
     searchInput.addEventListener('input', applyFilters);
     categoryFilter.addEventListener('change', applyFilters);
+    if (lowStockCheckbox) {
+        lowStockCheckbox.addEventListener('change', applyFilters);
+    }
     
     const searchBtn = document.querySelector('.admin-controls .search-btn');
     if (searchBtn) {
@@ -391,22 +495,27 @@ window.onclick = function(event) {
     }
 }
 
-// ========== Doanh thu ==========
+// ========== Chuyển tab (admin.html gộp 3 trang) ==========
 function switchAdminTab(tab) {
     const productsSection = document.getElementById('adminProductsSection');
-    const productsHeader = document.getElementById('adminProductsHeader');
     const revenueSection = document.getElementById('adminRevenueSection');
+    const counterSection = document.getElementById('adminCounterSection');
     const tabs = document.querySelectorAll('.admin-tab');
     tabs.forEach(t => t.classList.toggle('active', t.dataset.tab === tab));
+
+    [productsSection, revenueSection, counterSection].forEach(el => {
+        if (el) el.style.display = 'none';
+    });
+
     if (tab === 'products') {
         if (productsSection) productsSection.style.display = 'block';
-        if (productsHeader) productsHeader.style.display = 'flex';
-        if (revenueSection) revenueSection.style.display = 'none';
-    } else {
-        if (productsSection) productsSection.style.display = 'none';
-        if (productsHeader) productsHeader.style.display = 'none';
+    } else if (tab === 'revenue') {
         if (revenueSection) revenueSection.style.display = 'block';
         loadRevenue();
+        updateAdminPendingNotification();
+    } else if (tab === 'counter') {
+        if (counterSection) counterSection.style.display = 'block';
+        renderCounterOrderForm();
     }
 }
 
@@ -419,41 +528,221 @@ async function loadRevenue() {
     } catch (e) {
         orders = JSON.parse(localStorage.getItem('orders') || '[]');
     }
-    const totalRevenue = orders.reduce((sum, o) => sum + (parseInt(o.total) || 0), 0);
+
+    // Áp dụng bộ lọc theo ngày/thời gian
+    const fromInput = document.getElementById('revenueFrom');
+    const toInput = document.getElementById('revenueTo');
+    const rangeSelect = document.getElementById('revenueRange');
+
+    let filtered = [...orders];
+
+    const now = new Date();
+
+    if (rangeSelect) {
+        const val = rangeSelect.value;
+        let start = null;
+        if (val === 'today') {
+            start = new Date();
+            start.setHours(0, 0, 0, 0);
+        } else if (val === '7days') {
+            start = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
+        } else if (val === '30days') {
+            start = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
+        }
+        if (start) {
+            filtered = filtered.filter(o => {
+                if (!o.date) return false;
+                const d = new Date(o.date);
+                return d >= start && d <= now;
+            });
+        }
+    }
+
+    if (fromInput && fromInput.value) {
+        const fromDate = new Date(fromInput.value);
+        fromDate.setHours(0, 0, 0, 0);
+        filtered = filtered.filter(o => {
+            if (!o.date) return false;
+            const d = new Date(o.date);
+            return d >= fromDate;
+        });
+    }
+
+    if (toInput && toInput.value) {
+        const toDate = new Date(toInput.value);
+        toDate.setHours(23, 59, 59, 999);
+        filtered = filtered.filter(o => {
+            if (!o.date) return false;
+            const d = new Date(o.date);
+            return d <= toDate;
+        });
+    }
+
+    const totalRevenue = filtered.reduce((sum, o) => sum + (parseInt(o.total) || 0), 0);
+    const totalOrders = filtered.length;
+
     document.getElementById('totalRevenue').textContent = formatCurrency(totalRevenue);
-    document.getElementById('totalOrders').textContent = orders.length;
+    document.getElementById('totalOrders').textContent = totalOrders;
     const tbody = document.getElementById('adminOrdersList');
     const noOrders = document.getElementById('adminNoOrders');
     if (!tbody) return;
-    if (orders.length === 0) {
+    if (filtered.length === 0) {
         tbody.innerHTML = '';
         if (noOrders) noOrders.style.display = 'block';
         return;
     }
     if (noOrders) noOrders.style.display = 'none';
     const products = getProducts();
-    tbody.innerHTML = orders.slice().reverse().map(order => {
+    const statuses = [
+        { value: 'pending', label: 'Chờ xử lý' },
+        { value: 'shipped', label: 'Đang giao' },
+        { value: 'delivered', label: 'Thành công' }
+    ];
+    tbody.innerHTML = filtered.slice().reverse().map(order => {
         const date = order.date ? new Date(order.date).toLocaleString('vi-VN') : '-';
+        const customerName = (order.customer && order.customer.name) ? order.customer.name : '-';
         const itemsText = (order.items || []).map(item => {
             const p = products.find(pr => pr.id === item.id);
             const name = p ? p.name : 'SP #' + item.id;
             return `${name} x${item.quantity || 0}`;
         }).join(', ') || '-';
+        const status = order.status || 'pending';
+        const statusLabel = typeof getOrderStatusLabel === 'function' ? getOrderStatusLabel(status) : status;
+        const statusOptions = statuses.map(s =>
+            `<option value="${s.value}" ${s.value === status ? 'selected' : ''}>${s.label}</option>`
+        ).join('');
         return `
             <tr>
                 <td>#${order.id}</td>
                 <td>${date}</td>
+                <td>${customerName}</td>
                 <td class="order-items-cell">${itemsText}</td>
                 <td class="order-total-cell">${formatCurrency(order.total || 0)}</td>
+                <td><span class="order-status-badge order-status-${status}">${statusLabel}</span></td>
+                <td>
+                    <select class="order-status-select" onchange="updateOrderStatus(${order.id}, this.value)">
+                        ${statusOptions}
+                    </select>
+                </td>
             </tr>
         `;
     }).join('');
 }
 
+async function updateOrderStatus(orderId, status) {
+    try {
+        const res = await fetch(`${API_BASE}/api/orders/${orderId}/status`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ status })
+        });
+        if (res.ok) {
+            showNotification('Đã cập nhật trạng thái đơn hàng');
+            loadRevenue();
+            updateAdminPendingNotification();
+        } else {
+            throw new Error('Cập nhật thất bại');
+        }
+    } catch (e) {
+        showNotification('Lỗi: ' + (e.message || 'Không thể cập nhật'));
+    }
+}
+
+// ----- Tạo đơn tại quầy (mua tại cửa hàng, không cần tài khoản khách) -----
+function renderCounterOrderForm() {
+    const tbody = document.getElementById('adminCounterProductsList');
+    if (!tbody) return;
+    const products = getProducts();
+    tbody.innerHTML = products.map(p => `
+        <tr data-product-id="${p.id}" data-price="${p.price}">
+            <td>${p.name}</td>
+            <td>${formatCurrency(p.price)}</td>
+            <td><input type="number" min="0" value="0" class="counter-qty" data-id="${p.id}"></td>
+            <td class="counter-subtotal" data-id="${p.id}">0₫</td>
+        </tr>
+    `).join('');
+    tbody.querySelectorAll('.counter-qty').forEach(input => {
+        input.addEventListener('input', updateCounterTotal);
+        input.addEventListener('change', updateCounterTotal);
+    });
+    updateCounterTotal();
+    const btn = document.getElementById('adminCounterCreateBtn');
+    if (btn && !btn._bound) {
+        btn._bound = true;
+        btn.addEventListener('click', createCounterOrder);
+    }
+}
+
+function updateCounterTotal() {
+    const rows = document.querySelectorAll('#adminCounterProductsList tr');
+    let total = 0;
+    rows.forEach(tr => {
+        const id = parseInt(tr.dataset.productId);
+        const price = parseInt(tr.dataset.price) || 0;
+        const qtyInput = tr.querySelector('.counter-qty');
+        const qty = Math.max(0, parseInt(qtyInput && qtyInput.value) || 0);
+        const subtotal = price * qty;
+        total += subtotal;
+        const subEl = tr.querySelector('.counter-subtotal');
+        if (subEl) subEl.textContent = formatCurrency(subtotal);
+    });
+    const totalEl = document.getElementById('adminCounterTotal');
+    if (totalEl) totalEl.textContent = formatCurrency(total);
+}
+
+async function createCounterOrder() {
+    const rows = document.querySelectorAll('#adminCounterProductsList tr');
+    const items = [];
+    rows.forEach(tr => {
+        const id = parseInt(tr.dataset.productId);
+        const qtyInput = tr.querySelector('.counter-qty');
+        const qty = Math.max(0, parseInt(qtyInput && qtyInput.value) || 0);
+        if (qty > 0) items.push({ id, quantity: qty });
+    });
+    if (items.length === 0) {
+        const msgEl = document.getElementById('adminCounterMessage');
+        if (msgEl) { msgEl.textContent = 'Vui lòng chọn ít nhất một sản phẩm.'; msgEl.style.display = 'block'; return; }
+    }
+    const products = getProducts();
+    let total = 0;
+    items.forEach(item => {
+        const p = products.find(pr => pr.id === item.id);
+        if (p) total += p.price * item.quantity;
+    });
+    const nameEl = document.getElementById('adminCounterName');
+    const phoneEl = document.getElementById('adminCounterPhone');
+    const name = nameEl ? nameEl.value.trim() : '';
+    const phone = phoneEl ? phoneEl.value.trim() : '';
+    const msgEl = document.getElementById('adminCounterMessage');
+    if (msgEl) { msgEl.style.display = 'none'; msgEl.textContent = ''; }
+    try {
+        const res = await fetch(`${API_BASE}/api/orders`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                items,
+                total,
+                paymentMethod: 'Thanh toán tại quầy',
+                customer: { name, phone, address: '' }
+            })
+        });
+        if (!res.ok) throw new Error('Không thể tạo đơn');
+        if (nameEl) nameEl.value = '';
+        if (phoneEl) phoneEl.value = '';
+        renderCounterOrderForm();
+        await loadRevenue();
+        updateAdminPendingNotification();
+        showNotification('Đã tạo đơn tại quầy. Doanh thu đã cập nhật.');
+    } catch (e) {
+        if (msgEl) { msgEl.textContent = 'Lỗi: ' + (e.message || 'Không thể tạo đơn'); msgEl.style.display = 'block'; }
+    }
+}
+
 // Initialize admin page
 document.addEventListener('DOMContentLoaded', () => {
-    const currentPage = window.location.pathname.split('/').pop() || 'products.html';
-    if (currentPage === 'admin.html') {
-        loadAdminPage();
+    const page = (window.location.pathname.split('/').pop() || '').toLowerCase();
+    const isAdminPage = ['admin.html', 'admin-products.html', 'admin-revenue.html', 'admin-counter.html'].includes(page);
+    if (isAdminPage) {
+        initAdminPage();
     }
 });

@@ -8,6 +8,8 @@ window.onclick = function(event) {
     }
 }
 
+let currentCustomerProfile = null;
+
 // Render cart items
 function renderCartItems() {
     const cart = getCart();
@@ -99,9 +101,20 @@ function updateCartSummary() {
 // Load cart page
 async function loadCartPage() {
     await initializeProducts();
+    try {
+        const res = await fetch(`${API_BASE}/api/customer/me`);
+        if (res.ok) currentCustomerProfile = await res.json();
+        else currentCustomerProfile = null;
+    } catch (e) {
+        currentCustomerProfile = null;
+    }
     renderCartItems();
-    
-    // Checkout button: mở luôn modal QR thanh toán (bỏ bước trang "Đơn hàng của bạn")
+
+    // Hiện gợi ý đăng nhập nếu chưa đăng nhập
+    const loginHint = document.getElementById('cartLoginHint');
+    if (loginHint) loginHint.style.display = currentCustomerProfile ? 'none' : 'block';
+
+    // Thanh toán (mua online): bắt buộc đăng nhập. Đã đăng nhập thì chọn COD hoặc QR và thanh toán bình thường.
     const checkoutBtn = document.getElementById('checkoutBtn');
     if (checkoutBtn) {
         checkoutBtn.addEventListener('click', () => {
@@ -110,7 +123,27 @@ async function loadCartPage() {
                 alert('Giỏ hàng của bạn đang trống!');
                 return;
             }
-            showQRModal();
+            if (!currentCustomerProfile) {
+                if (typeof showNotification === 'function') showNotification('Bạn cần đăng nhập để thanh toán đơn hàng online.');
+                window.location.href = 'login.html?redirect=' + encodeURIComponent('cart.html');
+                return;
+            }
+            // Đã đăng nhập: bắt buộc có đủ thông tin giao hàng (họ tên, SĐT, địa chỉ) mới cho thanh toán.
+            const name = (currentCustomerProfile.name || '').trim();
+            const phone = (currentCustomerProfile.phone || '').trim();
+            const address = (currentCustomerProfile.address || '').trim();
+            if (!name || !phone || !address) {
+                if (typeof showNotification === 'function') showNotification('Vui lòng bổ sung thông tin giao hàng (họ tên, SĐT, địa chỉ) tại trang Tài khoản trước khi đặt hàng.');
+                window.location.href = 'customer.html?from=cart';
+                return;
+            }
+            const method = document.querySelector('input[name="paymentMethod"]:checked');
+            const isQR = method && method.value === 'QR';
+            if (isQR) {
+                showQRModal();
+            } else {
+                confirmPayment('COD');
+            }
         });
     }
 }
@@ -174,29 +207,34 @@ function closeQRModal() {
     }
 }
 
-// Confirm payment
-async function confirmPayment() {
+// Confirm payment (paymentMethodArg: 'COD' | 'QR'). Chỉ gọi khi đã đăng nhập khách.
+async function confirmPayment(paymentMethodArg) {
     const cart = getCart();
     if (cart.length === 0) {
         alert('Giỏ hàng của bạn đang trống!');
         return;
     }
-    
+
+    const paymentMethod = paymentMethodArg === 'QR' || paymentMethodArg === 'QR Code'
+        ? 'Thanh toán qua quét mã QR'
+        : 'Thanh toán khi nhận hàng';
+
     const products = getProducts();
     let total = 0;
     cart.forEach(cartItem => {
         const product = products.find(p => p.id === cartItem.id);
-        if (product) {
-            total += product.price * cartItem.quantity;
-        }
+        if (product) total += product.price * cartItem.quantity;
     });
-    
-    const API_BASE = window.location.origin;
+
+    const customerPayload = currentCustomerProfile
+        ? { name: currentCustomerProfile.name || '', phone: currentCustomerProfile.phone || '', address: currentCustomerProfile.address || '' }
+        : {};
+
     try {
         const res = await fetch(`${API_BASE}/api/orders`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ items: cart, total, paymentMethod: 'QR Code' })
+            body: JSON.stringify({ items: cart, total, paymentMethod, customer: customerPayload })
         });
         if (res.ok) {
             await initializeProducts();
@@ -207,17 +245,19 @@ async function confirmPayment() {
         const orders = JSON.parse(localStorage.getItem('orders') || '[]');
         orders.push({
             items: cart,
-            total: total,
+            total,
             id: Date.now(),
             date: new Date().toISOString(),
-            status: 'completed',
-            paymentMethod: 'QR Code'
+            status: 'pending',
+            paymentMethod
         });
         localStorage.setItem('orders', JSON.stringify(orders));
     }
-    
+
     saveCart([]);
-    closeQRModal();
-    alert('Thanh toán thành công! Cảm ơn bạn đã mua sắm tại cửa hàng của chúng tôi.');
+    if (paymentMethodArg === 'QR' || paymentMethodArg === 'QR Code') {
+        closeQRModal();
+    }
+    alert('Đặt hàng thành công! Cảm ơn bạn đã mua sắm tại cửa hàng của chúng tôi.');
     window.location.href = 'products.html';
 }

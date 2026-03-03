@@ -3,188 +3,234 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quản Lý Sản Phẩm - Admin</title>
+    <title>Quản Lý - Tạp Hóa Gia Đình</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/admin.css">
     <link rel="stylesheet" href="css/responsive.css">
 </head>
 <body>
-    <!-- Header -->
     <header id="header"></header>
 
-    <!-- Admin Section -->
     <section class="admin-section">
         <div class="container">
-            <div class="admin-tabs">
-                <button type="button" class="admin-tab active" data-tab="products" onclick="switchAdminTab('products')">📦 Sản phẩm & Tồn kho</button>
-                <button type="button" class="admin-tab" data-tab="revenue" onclick="switchAdminTab('revenue')">💰 Doanh thu</button>
-            </div>
-            <div class="admin-header" id="adminProductsHeader">
-                <h1 class="page-title">Quản Lý Sản Phẩm</h1>
-                <div class="admin-actions">
-                    <button class="btn btn-primary" onclick="showAddProductForm()">+ Thêm Sản Phẩm</button>
-                    <button class="btn btn-secondary" onclick="exportProducts()">📥 Xuất File JSON</button>
-                    <button class="btn btn-secondary" onclick="document.getElementById('importFile').click()">📤 Nhập File JSON</button>
-                    <input type="file" id="importFile" accept=".json" style="display: none;" onchange="importProducts(event)">
-                    <a href="products.html" class="btn btn-secondary">← Về Sản Phẩm</a>
+            <div id="adminApp" style="display: none;">
+                <!-- Thông báo đơn đặt online — hiện ở mọi tab -->
+                <div id="adminNewOrderAlert" class="admin-new-order-alert" style="display: none;">
+                    <span class="alert-icon">🔔</span>
+                    <span>Có <strong id="pendingOrdersCount">0</strong> đơn hàng mới cần xử lý!</span>
+                    <button type="button" class="btn btn-primary btn-sm" onclick="goToRevenueOrders()">Xem ngay</button>
                 </div>
-            </div>
 
-            <!-- Product Form Modal -->
-            <div id="productModal" class="modal">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h2 id="modalTitle">Thêm Sản Phẩm Mới</h2>
-                        <span class="close" onclick="closeProductForm()">&times;</span>
+                <div class="admin-header-simple">
+                    <h1 class="page-title">Quản Lý</h1>
+                    <a href="#" onclick="handleAdminLogout(); return false;" class="btn btn-secondary">Đăng xuất</a>
+                </div>
+
+                <nav class="admin-nav-links">
+                    <a href="#" class="admin-tab active" data-tab="products" onclick="switchAdminTab('products'); return false;">Sản phẩm & tồn kho</a>
+                    <a href="#" class="admin-tab" data-tab="revenue" onclick="switchAdminTab('revenue'); return false;">Doanh thu</a>
+                    <a href="#" class="admin-tab" data-tab="counter" onclick="switchAdminTab('counter'); return false;">Tạo đơn tại quầy</a>
+                </nav>
+
+                <!-- 1. Sản phẩm & tồn kho -->
+                <div id="adminProductsSection" class="admin-tab-panel">
+                    <div id="adminProductsHeader" class="admin-controls">
+                        <input type="text" id="adminSearch" placeholder="Tìm sản phẩm...">
+                        <select id="adminCategoryFilter">
+                            <option value="">Tất cả danh mục</option>
+                            <option value="thuc-pham-tuoi">Thực Phẩm Tươi</option>
+                            <option value="do-kho">Đồ Khô</option>
+                            <option value="do-uong">Đồ Uống</option>
+                            <option value="banh-keo">Bánh Kẹo</option>
+                            <option value="gia-vi">Gia Vị</option>
+                            <option value="do-ve-sinh">Đồ Vệ Sinh</option>
+                        </select>
+                        <label><input type="checkbox" id="adminLowStockOnly"> Tồn kho &le; 5</label>
+                        <button type="button" class="btn btn-secondary search-btn">Lọc</button>
+                        <button type="button" class="btn btn-primary" onclick="showAddProductForm()">Thêm sản phẩm</button>
+                        <button type="button" class="btn btn-secondary" onclick="exportProducts()">Xuất JSON</button>
+                        <label class="btn btn-secondary" style="margin: 0;">
+                            Nhập JSON <input type="file" accept=".json" onchange="importProducts(event)" style="display: none;">
+                        </label>
                     </div>
-                    <form id="productForm" onsubmit="saveProduct(event)">
-                        <input type="hidden" id="productId">
-                        
-                        <div class="form-group">
-                            <label for="productName">Tên Sản Phẩm *</label>
-                            <input type="text" id="productName" required>
-                        </div>
+                    <div class="admin-products-table-wrap">
+                        <table class="admin-products-table orders-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Ảnh</th>
+                                    <th>Tên</th>
+                                    <th>Danh mục</th>
+                                    <th>Giá</th>
+                                    <th>Tồn kho</th>
+                                    <th>Nổi bật</th>
+                                    <th>Thao tác</th>
+                                </tr>
+                            </thead>
+                            <tbody id="adminProductsList"></tbody>
+                        </table>
+                    </div>
+                    <div id="adminNoProducts" class="no-products" style="display: none;">
+                        <p>Chưa có sản phẩm nào. Bấm "Thêm sản phẩm" để tạo mới.</p>
+                    </div>
+                </div>
 
-                        <div class="form-group">
-                            <label for="productCategory">Danh Mục *</label>
-                            <select id="productCategory" required>
-                                <option value="">Chọn danh mục</option>
-                                <option value="thuc-pham-tuoi">Thực Phẩm Tươi</option>
-                                <option value="do-kho">Đồ Khô</option>
-                                <option value="do-uong">Đồ Uống</option>
-                                <option value="banh-keo">Bánh Kẹo</option>
-                                <option value="gia-vi">Gia Vị</option>
-                                <option value="do-ve-sinh">Đồ Vệ Sinh</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="productPrice">Giá (VNĐ) *</label>
-                            <input type="number" id="productPrice" min="0" step="1" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="productQuantity">Số lượng tồn kho</label>
-                            <input type="number" id="productQuantity" min="0" value="0">
-                        </div>
-
-                        <div class="form-group">
-                            <label>Ảnh sản phẩm</label>
-                            <div class="product-image-upload">
-                                <div class="image-preview" id="productImagePreview">
-                                    <span class="image-placeholder" id="imagePlaceholder">📦</span>
-                                    <img id="productImageImg" src="" alt="" style="display: none;">
+                <!-- 2. Doanh thu -->
+                <div id="adminRevenueSection" class="admin-tab-panel" style="display: none;">
+                    <div class="admin-block-revenue">
+                        <div class="admin-block-inner">
+                            <h2 class="admin-block-title">Doanh thu</h2>
+                            <div class="revenue-filters">
+                                <div class="revenue-filter-group">
+                                    <label>Từ ngày</label>
+                                    <input type="date" id="revenueFrom">
                                 </div>
-                                <div class="image-actions">
-                                    <input type="file" id="productImageFile" accept="image/*" capture="environment" style="display: none;">
-                                    <button type="button" class="btn btn-secondary btn-sm" onclick="document.getElementById('productImageFile').click()">📷 Chụp ảnh / Chọn ảnh</button>
-                                    <span class="image-or">hoặc</span>
-                                    <input type="text" id="productImageEmoji" placeholder="Emoji: 🍎 🥬 🥤" maxlength="2" class="emoji-input">
+                                <div class="revenue-filter-group">
+                                    <label>Đến ngày</label>
+                                    <input type="date" id="revenueTo">
+                                </div>
+                                <div class="revenue-filter-group">
+                                    <label>Khoảng thời gian</label>
+                                    <select id="revenueRange">
+                                        <option value="all">Tất cả</option>
+                                        <option value="today">Hôm nay</option>
+                                        <option value="7days">7 ngày gần đây</option>
+                                        <option value="30days">30 ngày gần đây</option>
+                                    </select>
+                                </div>
+                                <button type="button" class="btn btn-secondary" onclick="loadRevenue()">Lọc</button>
+                            </div>
+                            <div class="revenue-summary">
+                                <div class="revenue-card">
+                                    <span class="revenue-label">Tổng doanh thu</span>
+                                    <span class="revenue-value" id="totalRevenue">0₫</span>
+                                </div>
+                                <div class="revenue-card">
+                                    <span class="revenue-label">Số đơn hàng</span>
+                                    <span class="revenue-value" id="totalOrders">0</span>
                                 </div>
                             </div>
-                            <input type="hidden" id="productImage" name="productImage">
-                            <small>Dùng camera chụp ảnh sản phẩm hoặc nhập emoji</small>
                         </div>
-
-                        <div class="form-group">
-                            <label for="productDescription">Mô Tả</label>
-                            <textarea id="productDescription" rows="4"></textarea>
+                        <div class="orders-table-container" id="adminOrdersSection">
+                            <h2 class="admin-block-title">Đơn hàng khách hàng <span id="revenuePendingBadge" class="tab-badge" style="display: none;">0</span></h2>
+                            <p class="orders-description">Cập nhật trạng thái đơn hàng giao cho khách online.</p>
+                            <div class="orders-table-wrap">
+                                <table class="orders-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Mã đơn</th>
+                                            <th>Ngày</th>
+                                            <th>Khách hàng</th>
+                                            <th>Sản phẩm</th>
+                                            <th>Tổng tiền</th>
+                                            <th>Trạng thái</th>
+                                            <th>Cập nhật</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="adminOrdersList"></tbody>
+                                </table>
+                            </div>
+                            <div id="adminNoOrders" class="no-products" style="display: none;">
+                                <p>Chưa có đơn hàng nào.</p>
+                            </div>
                         </div>
-
-                        <div class="form-group">
-                            <label>
-                                <input type="checkbox" id="productFeatured">
-                                Sản phẩm nổi bật
-                            </label>
-                        </div>
-
-                        <div class="form-actions">
-                            <button type="button" class="btn btn-secondary" onclick="closeProductForm()">Hủy</button>
-                            <button type="submit" class="btn btn-primary">Lưu</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-
-            <!-- Products List -->
-            <div id="adminProductsSection" class="admin-products-section">
-            <div class="admin-controls">
-                <div class="search-box">
-                    <input type="text" id="adminSearch" placeholder="Tìm kiếm sản phẩm...">
-                    <button class="search-btn">🔍</button>
-                </div>
-                <select id="adminCategoryFilter">
-                    <option value="">Tất cả danh mục</option>
-                    <option value="thuc-pham-tuoi">Thực Phẩm Tươi</option>
-                    <option value="do-kho">Đồ Khô</option>
-                    <option value="do-uong">Đồ Uống</option>
-                    <option value="banh-keo">Bánh Kẹo</option>
-                    <option value="gia-vi">Gia Vị</option>
-                    <option value="do-ve-sinh">Đồ Vệ Sinh</option>
-                </select>
-            </div>
-
-            <div class="products-table-container">
-                <table class="products-table">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Icon</th>
-                            <th>Tên Sản Phẩm</th>
-                            <th>Danh Mục</th>
-                            <th>Giá</th>
-                            <th>Số lượng</th>
-                            <th>Nổi Bật</th>
-                            <th>Thao Tác</th>
-                        </tr>
-                    </thead>
-                    <tbody id="adminProductsList">
-                        <!-- Products will be loaded here -->
-                    </tbody>
-                </table>
-                <div id="adminNoProducts" class="no-products" style="display: none;">
-                    <p>Không có sản phẩm nào.</p>
-                </div>
-            </div>
-            </div>
-
-            <!-- Doanh thu -->
-            <div id="adminRevenueSection" class="admin-revenue-section" style="display: none;">
-                <h1 class="page-title">Doanh thu</h1>
-                <div class="revenue-summary">
-                    <div class="revenue-card">
-                        <span class="revenue-label">Tổng doanh thu</span>
-                        <span class="revenue-value" id="totalRevenue">0₫</span>
-                    </div>
-                    <div class="revenue-card">
-                        <span class="revenue-label">Số đơn hàng</span>
-                        <span class="revenue-value" id="totalOrders">0</span>
                     </div>
                 </div>
-                <div class="orders-table-container">
-                    <h2>Lịch sử đơn hàng</h2>
-                    <table class="orders-table">
-                        <thead>
-                            <tr>
-                                <th>Mã đơn</th>
-                                <th>Ngày</th>
-                                <th>Sản phẩm</th>
-                                <th>Tổng tiền</th>
-                            </tr>
-                        </thead>
-                        <tbody id="adminOrdersList">
-                        </tbody>
-                    </table>
-                    <div id="adminNoOrders" class="no-products" style="display: none;">
-                        <p>Chưa có đơn hàng nào.</p>
+
+                <!-- 3. Tạo đơn tại quầy -->
+                <div id="adminCounterSection" class="admin-tab-panel" style="display: none;">
+                    <div class="admin-block admin-block-counter">
+                        <div class="admin-block-inner orders-table-container">
+                            <h2 class="admin-block-title">Tạo đơn tại quầy</h2>
+                            <p class="orders-description">Khách mua tại cửa hàng không cần đăng nhập — thanh toán tại quầy, đơn tự ghi trạng thái Thành công.</p>
+                            <div class="counter-order-form">
+                                <div class="counter-order-table-wrap">
+                                    <table class="orders-table counter-products-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Sản phẩm</th>
+                                                <th>Đơn giá</th>
+                                                <th>SL</th>
+                                                <th>Thành tiền</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="adminCounterProductsList"></tbody>
+                                    </table>
+                                </div>
+                                <div class="counter-order-total">
+                                    <strong>Tổng cộng:</strong>
+                                    <span id="adminCounterTotal">0₫</span>
+                                </div>
+                                <div class="counter-order-customer">
+                                    <label>Khách (tuỳ chọn):</label>
+                                    <input type="text" id="adminCounterName" placeholder="Tên khách">
+                                    <input type="text" id="adminCounterPhone" placeholder="Số điện thoại">
+                                </div>
+                                <button type="button" class="btn btn-primary btn-block" id="adminCounterCreateBtn">Tạo đơn tại quầy</button>
+                                <p id="adminCounterMessage" class="auth-error" style="display: none; margin-top: 10px;"></p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- Modal Thêm/Sửa sản phẩm -->
+    <div id="productModal" class="product-modal">
+        <div class="product-modal-content">
+            <h2 id="modalTitle">Thêm Sản Phẩm Mới</h2>
+            <form id="productForm" onsubmit="saveProduct(event)">
+                <input type="hidden" id="productId">
+                <input type="hidden" id="productImage" value="📦">
+                <label>Tên sản phẩm</label>
+                <input type="text" id="productName" required placeholder="Nhập tên sản phẩm">
+                <div class="form-row">
+                    <div>
+                        <label>Danh mục</label>
+                        <select id="productCategory" required>
+                            <option value="thuc-pham-tuoi">Thực Phẩm Tươi</option>
+                            <option value="do-kho">Đồ Khô</option>
+                            <option value="do-uong">Đồ Uống</option>
+                            <option value="banh-keo">Bánh Kẹo</option>
+                            <option value="gia-vi">Gia Vị</option>
+                            <option value="do-ve-sinh">Đồ Vệ Sinh</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label>Giá (VNĐ)</label>
+                        <input type="number" id="productPrice" required min="0" placeholder="0">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div>
+                        <label>Tồn kho</label>
+                        <input type="number" id="productQuantity" min="0" value="0" placeholder="0">
+                    </div>
+                    <div>
+                        <label>Ảnh (emoji hoặc tải lên)</label>
+                        <div class="image-preview-wrap">
+                            <div id="imagePlaceholder">📦</div>
+                            <img id="productImageImg" alt="">
+                        </div>
+                        <input type="text" id="productImageEmoji" placeholder="📦 emoji" style="margin-bottom: 8px;">
+                        <input type="file" id="productImageFile" accept="image/*" placeholder="Hoặc chọn file">
+                    </div>
+                </div>
+                <label>Mô tả</label>
+                <textarea id="productDescription" placeholder="Mô tả sản phẩm"></textarea>
+                <label style="display: flex; align-items: center; gap: 8px; margin-bottom: 16px;">
+                    <input type="checkbox" id="productFeatured"> Sản phẩm nổi bật
+                </label>
+                <div class="product-modal-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeProductForm()">Hủy</button>
+                    <button type="submit" class="btn btn-primary">Lưu</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <footer class="footer">
         <div class="container">
             <div class="footer-content">

@@ -4,17 +4,17 @@
     "name": "Coca Cola Chai 1.5L",
     "category": "do-uong",
     "price": 25000,
-    "quantity": 10,
+    "quantity": 92,
     "image": "🥤",
     "description": "Nước ngọt Coca Cola chai lớn 1.5L, mát lạnh, giải khát tuyệt vời.",
-    "featured": false
+    "featured": true
   },
   {
     "id": 2,
     "name": "Mì Tôm Hảo Hảo",
     "category": "do-kho",
     "price": 3500,
-    "quantity": 10,
+    "quantity": 96,
     "image": "🍜",
     "description": "Mì tôm Hảo Hảo gói nhỏ, tiện lợi, thơm ngon.",
     "featured": false
@@ -24,7 +24,7 @@
     "name": "Bánh Oreo",
     "category": "banh-keo",
     "price": 45000,
-    "quantity": 10,
+    "quantity": 100,
     "image": "🍪",
     "description": "Bánh Oreo nhập khẩu, giòn tan, ngọt ngào.",
     "featured": false
@@ -34,7 +34,7 @@
     "name": "Kem Đánh Răng P/S",
     "category": "do-ve-sinh",
     "price": 35000,
-    "quantity": 10,
+    "quantity": 100,
     "image": "🧴",
     "description": "Kem đánh răng P/S bảo vệ răng miệng hiệu quả.",
     "featured": false
@@ -44,17 +44,17 @@
     "name": "Trứng Gà Ta",
     "category": "thuc-pham-tuoi",
     "price": 3500,
-    "quantity": 10,
+    "quantity": 60,
     "image": "🥚",
     "description": "Trứng gà ta tươi, bổ dưỡng, giá cả hợp lý.",
-    "featured": false
+    "featured": true
   },
   {
     "id": 6,
     "name": "Kẹo Dẻo Haribo",
     "category": "banh-keo",
     "price": 55000,
-    "quantity": 10,
+    "quantity": 40,
     "image": "🍬",
     "description": "Kẹo dẻo Haribo nhập khẩu, nhiều vị, ngon miệng.",
     "featured": false
@@ -64,7 +64,7 @@
     "name": "Đường Trắng",
     "category": "gia-vi",
     "price": 22000,
-    "quantity": 10,
+    "quantity": 80,
     "image": "🍯",
     "description": "Đường trắng tinh khiết, ngọt thanh.",
     "featured": false
@@ -74,7 +74,7 @@
     "name": "Khoai Tây",
     "category": "thuc-pham-tuoi",
     "price": 18000,
-    "quantity": 10,
+    "quantity": 70,
     "image": "🥔",
     "description": "Khoai tây tươi, nhiều tinh bột, dễ chế biến.",
     "featured": false
@@ -84,7 +84,7 @@
     "name": "Bia Tiger",
     "category": "do-uong",
     "price": 18000,
-    "quantity": 10,
+    "quantity": 120,
     "image": "🍺",
     "description": "Bia Tiger lon 330ml, mát lạnh, giải khát.",
     "featured": false
@@ -94,9 +94,1299 @@
     "name": "Nước Rửa Chén Sunlight",
     "category": "do-ve-sinh",
     "price": 45000,
-    "quantity": 10,
+    "quantity": 60,
     "image": "🧽",
     "description": "Nước rửa chén Sunlight sạch bóng, thơm mát.",
     "featured": false
+  },
+  {
+    "id": 11,
+    "name": "Thịt Heo Ba Rọi",
+    "category": "thuc-pham-tuoi",
+    "price": 120000,
+    "quantity": 40,
+    "image": "🥓",
+    "description": "Thịt heo ba rọi tươi, phù hợp kho, nướng, chiên.",
+    "featured": true
+  },
+  {
+    "id": 12,
+    "name": "Thịt Bò Thăn",
+    "category": "thuc-pham-tuoi",
+    "price": 260000,
+    "quantity": 25,
+    "image": "🥩",
+    "description": "Thịt bò thăn mềm, làm bít tết, xào, nấu canh.",
+    "featured": true
+  },
+  {
+    "id": 13,
+    "name": "Ức Gà Phi Lê",
+    "category": "thuc-pham-tuoi",
+    "price": 95000,
+    "quantity": 50,
+    "image": "🍗",
+    "description": "Ức gà phi lê ít mỡ, phù hợp ăn kiêng, gym.",
+    "featured": false
+  },
+  {
+    "id": 14,
+    "name": "Cánh Gà",
+    "category": "thuc-pham-tuoi",
+    "price": 105000,
+    "quantity": 45,
+    "image": "🍖",
+    "description": "Cánh gà tươi, dùng để chiên nước mắm, nướng.",
+    "featured": false
+  },
+  {
+    "id": 15,
+    "name": "Xương Ống Heo",
+    "category": "thuc-pham-tuoi",
+    "price": 75000,
+    "quantity": 30,
+    "image": "🦴",
+    "description": "Xương ống heo dùng ninh nước dùng, hầm rau củ.",
+    "featured": false
+  },
+  {
+    "id": 16,
+    "name": "Giò Sống",
+    "category": "thuc-pham-tuoi",
+    "price": 120000,
+    "quantity": 25,
+    "image": "🥘",
+    "description": "Giò sống tươi, dùng nấu canh, làm chả.",
+    "featured": false
+  },
+  {
+    "id": 17,
+    "name": "Cá Basa Phi Lê",
+    "category": "thuc-pham-tuoi",
+    "price": 85000,
+    "quantity": 35,
+    "image": "🐟",
+    "description": "Cá basa phi lê ít xương, thích hợp kho, chiên.",
+    "featured": false
+  },
+  {
+    "id": 18,
+    "name": "Tôm Sú Đông Lạnh",
+    "category": "thuc-pham-tuoi",
+    "price": 210000,
+    "quantity": 20,
+    "image": "🍤",
+    "description": "Tôm sú đông lạnh, dùng cho các món nướng, lẩu.",
+    "featured": true
+  },
+  {
+    "id": 19,
+    "name": "Rau Muống",
+    "category": "thuc-pham-tuoi",
+    "price": 12000,
+    "quantity": 60,
+    "image": "🥬",
+    "description": "Rau muống tươi, phù hợp luộc, xào tỏi.",
+    "featured": false
+  },
+  {
+    "id": 20,
+    "name": "Cải Ngọt",
+    "category": "thuc-pham-tuoi",
+    "price": 15000,
+    "quantity": 50,
+    "image": "🥬",
+    "description": "Cải ngọt tươi, nấu canh xương, luộc chấm nước mắm.",
+    "featured": false
+  },
+  {
+    "id": 21,
+    "name": "Cà Chua",
+    "category": "thuc-pham-tuoi",
+    "price": 22000,
+    "quantity": 70,
+    "image": "🍅",
+    "description": "Cà chua chín mọng, dùng nấu canh, xào, làm salad.",
+    "featured": false
+  },
+  {
+    "id": 22,
+    "name": "Hành Lá",
+    "category": "thuc-pham-tuoi",
+    "price": 8000,
+    "quantity": 80,
+    "image": "🌿",
+    "description": "Hành lá tươi, không thể thiếu cho món canh, xào.",
+    "featured": false
+  },
+  {
+    "id": 23,
+    "name": "Hành Tây",
+    "category": "thuc-pham-tuoi",
+    "price": 28000,
+    "quantity": 40,
+    "image": "🧅",
+    "description": "Hành tây Đà Lạt, dùng cho món xào, salad.",
+    "featured": false
+  },
+  {
+    "id": 24,
+    "name": "Ớt Tươi",
+    "category": "thuc-pham-tuoi",
+    "price": 15000,
+    "quantity": 40,
+    "image": "🌶️",
+    "description": "Ớt tươi cay, dùng làm nước chấm, muối ớt.",
+    "featured": false
+  },
+  {
+    "id": 25,
+    "name": "Muối I-ốt",
+    "category": "gia-vi",
+    "price": 8000,
+    "quantity": 100,
+    "image": "🧂",
+    "description": "Muối i-ốt tinh khiết, tốt cho sức khỏe.",
+    "featured": false
+  },
+  {
+    "id": 26,
+    "name": "Nước Mắm Truyền Thống",
+    "category": "gia-vi",
+    "price": 42000,
+    "quantity": 60,
+    "image": "🧴",
+    "description": "Nước mắm cá cơm truyền thống, độ đạm cao.",
+    "featured": true
+  },
+  {
+    "id": 27,
+    "name": "Nước Tương Đậu Nành",
+    "category": "gia-vi",
+    "price": 28000,
+    "quantity": 70,
+    "image": "🧴",
+    "description": "Nước tương đậu nành thơm ngon, dùng chấm và nấu ăn.",
+    "featured": false
+  },
+  {
+    "id": 28,
+    "name": "Dầu Ăn Hướng Dương",
+    "category": "gia-vi",
+    "price": 55000,
+    "quantity": 80,
+    "image": "🛢️",
+    "description": "Dầu ăn hướng dương ít cholesterol, tốt cho tim mạch.",
+    "featured": false
+  },
+  {
+    "id": 29,
+    "name": "Bột Ngọt",
+    "category": "gia-vi",
+    "price": 32000,
+    "quantity": 60,
+    "image": "🧂",
+    "description": "Bột ngọt tinh khiết, tăng vị ngọt cho món ăn.",
+    "featured": false
+  },
+  {
+    "id": 30,
+    "name": "Hạt Nêm Gà",
+    "category": "gia-vi",
+    "price": 38000,
+    "quantity": 70,
+    "image": "🧂",
+    "description": "Hạt nêm vị gà, dùng nêm canh, xào.",
+    "featured": false
+  },
+  {
+    "id": 31,
+    "name": "Tiêu Xay",
+    "category": "gia-vi",
+    "price": 29000,
+    "quantity": 50,
+    "image": "🧂",
+    "description": "Tiêu xay thơm, cay nhẹ, dùng ướp thịt, nêm súp.",
+    "featured": false
+  },
+  {
+    "id": 32,
+    "name": "Ớt Bột Hàn Quốc",
+    "category": "gia-vi",
+    "price": 65000,
+    "quantity": 30,
+    "image": "🌶️",
+    "description": "Ớt bột Hàn Quốc làm kim chi, sốt cay.",
+    "featured": false
+  },
+  {
+    "id": 33,
+    "name": "Gạo ST25",
+    "category": "do-kho",
+    "price": 24000,
+    "quantity": 200,
+    "image": "🍚",
+    "description": "Gạo ST25 thơm ngon, dẻo, nổi tiếng.",
+    "featured": true
+  },
+  {
+    "id": 34,
+    "name": "Bún Khô",
+    "category": "do-kho",
+    "price": 23000,
+    "quantity": 90,
+    "image": "🍜",
+    "description": "Bún khô gạo, dùng nấu bún nước, bún xào.",
+    "featured": false
+  },
+  {
+    "id": 35,
+    "name": "Miến Dong",
+    "category": "do-kho",
+    "price": 28000,
+    "quantity": 80,
+    "image": "🍜",
+    "description": "Miến dong nguyên chất, dùng nấu miến gà, miến măng.",
+    "featured": false
+  },
+  {
+    "id": 36,
+    "name": "Đậu Xanh Hạt",
+    "category": "do-kho",
+    "price": 38000,
+    "quantity": 60,
+    "image": "🫘",
+    "description": "Đậu xanh nguyên hạt, nấu chè, làm nhân bánh.",
+    "featured": false
+  },
+  {
+    "id": 37,
+    "name": "Đậu Nành Hạt",
+    "category": "do-kho",
+    "price": 30000,
+    "quantity": 60,
+    "image": "🫘",
+    "description": "Đậu nành làm sữa, đậu phụ.",
+    "featured": false
+  },
+  {
+    "id": 38,
+    "name": "Nước Suối Aquafina 500ml",
+    "category": "do-uong",
+    "price": 6000,
+    "quantity": 120,
+    "image": "💧",
+    "description": "Nước suối Aquafina 500ml tinh khiết.",
+    "featured": false
+  },
+  {
+    "id": 39,
+    "name": "Trà Xanh Không Độ",
+    "category": "do-uong",
+    "price": 10000,
+    "quantity": 110,
+    "image": "🧋",
+    "description": "Trà xanh đóng chai giải khát, thanh lọc cơ thể.",
+    "featured": false
+  },
+  {
+    "id": 40,
+    "name": "Sữa Tươi Tiệt Trùng Có Đường",
+    "category": "do-uong",
+    "price": 12000,
+    "quantity": 100,
+    "image": "🥛",
+    "description": "Sữa tươi tiệt trùng hộp 180ml, bổ sung canxi.",
+    "featured": false
+  },
+  {
+    "id": 41,
+    "name": "Giấy Vệ Sinh Cuộn Lớn",
+    "category": "do-ve-sinh",
+    "price": 52000,
+    "quantity": 90,
+    "image": "🧻",
+    "description": "Giấy vệ sinh 10 cuộn, mềm, dai.",
+    "featured": true
+  },
+  {
+    "id": 42,
+    "name": "Khăn Giấy Rút",
+    "category": "do-ve-sinh",
+    "price": 26000,
+    "quantity": 80,
+    "image": "🧻",
+    "description": "Khăn giấy rút dùng trong bếp, phòng khách.",
+    "featured": false
+  },
+  {
+    "id": 43,
+    "name": "Nước Lau Sàn Hương Chanh",
+    "category": "do-ve-sinh",
+    "price": 48000,
+    "quantity": 70,
+    "image": "🧴",
+    "description": "Nước lau sàn diệt khuẩn, hương chanh mát.",
+    "featured": false
+  },
+  {
+    "id": 44,
+    "name": "Bột Giặt OMO 3kg",
+    "category": "do-ve-sinh",
+    "price": 125000,
+    "quantity": 40,
+    "image": "🧺",
+    "description": "Bột giặt OMO 3kg, đánh bay vết bẩn.",
+    "featured": false
+  },
+  {
+    "id": 45,
+    "name": "Dầu Gội Đầu",
+    "category": "do-ve-sinh",
+    "price": 78000,
+    "quantity": 50,
+    "image": "🧴",
+    "description": "Dầu gội dưỡng tóc mềm mượt, thơm lâu.",
+    "featured": false
+  },
+  {
+    "id": 46,
+    "name": "Sữa Tắm Dưỡng Ẩm",
+    "category": "do-ve-sinh",
+    "price": 82000,
+    "quantity": 50,
+    "image": "🧴",
+    "description": "Sữa tắm dưỡng ẩm, phù hợp mọi loại da.",
+    "featured": false
+  },
+  {
+    "name": "Thịt Vịt Nguyên Con",
+    "category": "thuc-pham-tuoi",
+    "price": 110000,
+    "quantity": 20,
+    "image": "🦆",
+    "description": "Thịt vịt làm sạch, thích hợp quay, luộc, nấu cháo.",
+    "featured": false,
+    "id": 47
+  },
+  {
+    "name": "Thịt Dê Thịt Lưng",
+    "category": "thuc-pham-tuoi",
+    "price": 260000,
+    "quantity": 15,
+    "image": "🐐",
+    "description": "Thịt dê tươi, dùng cho các món lẩu, nướng.",
+    "featured": false,
+    "id": 48
+  },
+  {
+    "name": "Thịt Cừu Phi Lê",
+    "category": "thuc-pham-tuoi",
+    "price": 320000,
+    "quantity": 10,
+    "image": "🐑",
+    "description": "Thịt cừu phi lê nhập khẩu, dùng áp chảo, nướng.",
+    "featured": false,
+    "id": 49
+  },
+  {
+    "name": "Cua Biển Tươi",
+    "category": "thuc-pham-tuoi",
+    "price": 280000,
+    "quantity": 12,
+    "image": "🦀",
+    "description": "Cua biển sống, thịt chắc, dùng hấp, nấu lẩu.",
+    "featured": true,
+    "id": 50
+  },
+  {
+    "name": "Ghẹ Xanh Tươi",
+    "category": "thuc-pham-tuoi",
+    "price": 240000,
+    "quantity": 14,
+    "image": "🦀",
+    "description": "Ghẹ xanh tươi, dùng hấp, rang me.",
+    "featured": false,
+    "id": 51
+  },
+  {
+    "name": "Mực Ống Tươi",
+    "category": "thuc-pham-tuoi",
+    "price": 210000,
+    "quantity": 18,
+    "image": "🦑",
+    "description": "Mực ống tươi, ngon khi nướng, xào, chiên.",
+    "featured": false,
+    "id": 52
+  },
+  {
+    "name": "Mực Nang Cắt Khoanh",
+    "category": "thuc-pham-tuoi",
+    "price": 195000,
+    "quantity": 16,
+    "image": "🦑",
+    "description": "Mực nang cắt khoanh, dùng xào, nấu lẩu.",
+    "featured": false,
+    "id": 53
+  },
+  {
+    "name": "Bạch Tuộc Baby",
+    "category": "thuc-pham-tuoi",
+    "price": 230000,
+    "quantity": 15,
+    "image": "🐙",
+    "description": "Bạch tuộc baby, thích hợp nướng sa tế, xào cay.",
+    "featured": false,
+    "id": 54
+  },
+  {
+    "name": "Cá Hồi Phi Lê",
+    "category": "thuc-pham-tuoi",
+    "price": 420000,
+    "quantity": 18,
+    "image": "🐟",
+    "description": "Cá hồi phi lê Nauy, dùng sashimi, steak, áp chảo.",
+    "featured": true,
+    "id": 55
+  },
+  {
+    "name": "Cá Thu Cắt Khúc",
+    "category": "thuc-pham-tuoi",
+    "price": 190000,
+    "quantity": 20,
+    "image": "🐟",
+    "description": "Cá thu cắt khúc, dùng kho, chiên.",
+    "featured": false,
+    "id": 56
+  },
+  {
+    "name": "Cá Diêu Hồng Nguyên Con",
+    "category": "thuc-pham-tuoi",
+    "price": 95000,
+    "quantity": 22,
+    "image": "🐟",
+    "description": "Cá diêu hồng tươi, thích hợp chiên xù, nấu lẩu.",
+    "featured": false,
+    "id": 57
+  },
+  {
+    "name": "Nghêu Sống",
+    "category": "thuc-pham-tuoi",
+    "price": 65000,
+    "quantity": 30,
+    "image": "🦪",
+    "description": "Nghêu sống, dùng hấp sả, nấu canh chua.",
+    "featured": false,
+    "id": 58
+  },
+  {
+    "name": "Sò Huyết",
+    "category": "thuc-pham-tuoi",
+    "price": 180000,
+    "quantity": 18,
+    "image": "🦪",
+    "description": "Sò huyết tươi, dùng nướng mỡ hành, xào tỏi.",
+    "featured": false,
+    "id": 59
+  },
+  {
+    "name": "Trứng Vịt",
+    "category": "thuc-pham-tuoi",
+    "price": 4500,
+    "quantity": 80,
+    "image": "🥚",
+    "description": "Trứng vịt tươi, dùng luộc, kho, làm bánh.",
+    "featured": false,
+    "id": 60
+  },
+  {
+    "name": "Trứng Cút",
+    "category": "thuc-pham-tuoi",
+    "price": 3000,
+    "quantity": 200,
+    "image": "🥚",
+    "description": "Trứng cút tươi, dùng chiên, kho, nấu mì.",
+    "featured": false,
+    "id": 61
+  },
+  {
+    "name": "Trứng Muối Nguyên Quả",
+    "category": "thuc-pham-tuoi",
+    "price": 6000,
+    "quantity": 60,
+    "image": "🥚",
+    "description": "Trứng vịt muối, dùng làm bánh, thịt kho.",
+    "featured": false,
+    "id": 62
+  },
+  {
+    "name": "Xà Lách Lolo Xanh",
+    "category": "thuc-pham-tuoi",
+    "price": 18000,
+    "quantity": 40,
+    "image": "🥬",
+    "description": "Xà lách dùng ăn kèm, cuốn, salad.",
+    "featured": false,
+    "id": 63
+  },
+  {
+    "name": "Rau Mồng Tơi",
+    "category": "thuc-pham-tuoi",
+    "price": 14000,
+    "quantity": 35,
+    "image": "🥬",
+    "description": "Rau mồng tơi tươi, dùng nấu canh cua.",
+    "featured": false,
+    "id": 64
+  },
+  {
+    "name": "Rau Dền Đỏ",
+    "category": "thuc-pham-tuoi",
+    "price": 15000,
+    "quantity": 35,
+    "image": "🥬",
+    "description": "Rau dền đỏ mát, nấu canh giải nhiệt.",
+    "featured": false,
+    "id": 65
+  },
+  {
+    "name": "Rau Thơm Hỗn Hợp",
+    "category": "thuc-pham-tuoi",
+    "price": 12000,
+    "quantity": 40,
+    "image": "🌿",
+    "description": "Húng, ngò, tía tô, húng quế trộn sẵn.",
+    "featured": false,
+    "id": 66
+  },
+  {
+    "name": "Khoai Lang Nhật",
+    "category": "thuc-pham-tuoi",
+    "price": 26000,
+    "quantity": 40,
+    "image": "🍠",
+    "description": "Khoai lang Nhật ruột vàng, dùng nướng, luộc.",
+    "featured": false,
+    "id": 67
+  },
+  {
+    "name": "Củ Cải Trắng",
+    "category": "thuc-pham-tuoi",
+    "price": 22000,
+    "quantity": 35,
+    "image": "🥕",
+    "description": "Củ cải trắng dùng nấu canh, hầm xương.",
+    "featured": false,
+    "id": 68
+  },
+  {
+    "name": "Tỏi Ta",
+    "category": "thuc-pham-tuoi",
+    "price": 38000,
+    "quantity": 30,
+    "image": "🧄",
+    "description": "Tỏi ta thơm, dùng phi, ướp thịt.",
+    "featured": false,
+    "id": 69
+  },
+  {
+    "name": "Gừng Tươi",
+    "category": "thuc-pham-tuoi",
+    "price": 32000,
+    "quantity": 30,
+    "image": "🫚",
+    "description": "Gừng tươi, khử mùi tanh, pha nước chấm.",
+    "featured": false,
+    "id": 70
+  },
+  {
+    "name": "Dưa Leo",
+    "category": "thuc-pham-tuoi",
+    "price": 18000,
+    "quantity": 50,
+    "image": "🥒",
+    "description": "Dưa leo ăn sống, làm gỏi, cuốn.",
+    "featured": false,
+    "id": 71
+  },
+  {
+    "name": "Bí Đỏ",
+    "category": "thuc-pham-tuoi",
+    "price": 20000,
+    "quantity": 40,
+    "image": "🎃",
+    "description": "Bí đỏ nấu canh, nấu cháo.",
+    "featured": false,
+    "id": 72
+  },
+  {
+    "name": "Bí Xanh",
+    "category": "thuc-pham-tuoi",
+    "price": 20000,
+    "quantity": 40,
+    "image": "🥒",
+    "description": "Bí xanh nấu canh, hấp.",
+    "featured": false,
+    "id": 73
+  },
+  {
+    "name": "Mướp Hương",
+    "category": "thuc-pham-tuoi",
+    "price": 20000,
+    "quantity": 35,
+    "image": "🥒",
+    "description": "Mướp hương nấu canh, xào.",
+    "featured": false,
+    "id": 74
+  },
+  {
+    "name": "Cà Tím",
+    "category": "thuc-pham-tuoi",
+    "price": 23000,
+    "quantity": 30,
+    "image": "🍆",
+    "description": "Cà tím nướng mỡ hành, kho.",
+    "featured": false,
+    "id": 75
+  },
+  {
+    "name": "Ớt Chuông Đỏ",
+    "category": "thuc-pham-tuoi",
+    "price": 38000,
+    "quantity": 25,
+    "image": "🫑",
+    "description": "Ớt chuông đỏ dùng xào, nướng.",
+    "featured": false,
+    "id": 76
+  },
+  {
+    "name": "Chuối Tiêu",
+    "category": "thuc-pham-tuoi",
+    "price": 28000,
+    "quantity": 50,
+    "image": "🍌",
+    "description": "Chuối tiêu chín, ăn tráng miệng.",
+    "featured": false,
+    "id": 77
+  },
+  {
+    "name": "Táo Mỹ",
+    "category": "thuc-pham-tuoi",
+    "price": 65000,
+    "quantity": 40,
+    "image": "🍎",
+    "description": "Táo Mỹ giòn ngọt, giàu vitamin.",
+    "featured": false,
+    "id": 78
+  },
+  {
+    "name": "Cam Sành",
+    "category": "thuc-pham-tuoi",
+    "price": 38000,
+    "quantity": 40,
+    "image": "🍊",
+    "description": "Cam sành ngọt, nhiều nước.",
+    "featured": false,
+    "id": 79
+  },
+  {
+    "name": "Xoài Cát",
+    "category": "thuc-pham-tuoi",
+    "price": 55000,
+    "quantity": 35,
+    "image": "🥭",
+    "description": "Xoài cát chín, thích hợp ăn sống, làm sinh tố.",
+    "featured": false,
+    "id": 80
+  },
+  {
+    "name": "Dưa Hấu Tròn",
+    "category": "thuc-pham-tuoi",
+    "price": 30000,
+    "quantity": 30,
+    "image": "🍉",
+    "description": "Dưa hấu tròn, ruột đỏ, ngọt.",
+    "featured": false,
+    "id": 81
+  },
+  {
+    "name": "Nho Đỏ Không Hạt",
+    "category": "thuc-pham-tuoi",
+    "price": 95000,
+    "quantity": 25,
+    "image": "🍇",
+    "description": "Nho đỏ không hạt, ăn liền, làm salad.",
+    "featured": false,
+    "id": 82
+  },
+  {
+    "name": "Lê Hàn Quốc",
+    "category": "thuc-pham-tuoi",
+    "price": 85000,
+    "quantity": 20,
+    "image": "🍐",
+    "description": "Lê giòn, nhiều nước, tốt cho cổ họng.",
+    "featured": false,
+    "id": 83
+  },
+  {
+    "name": "Thanh Long Ruột Đỏ",
+    "category": "thuc-pham-tuoi",
+    "price": 42000,
+    "quantity": 30,
+    "image": "🐉",
+    "description": "Thanh long ruột đỏ, giàu vitamin.",
+    "featured": false,
+    "id": 84
+  },
+  {
+    "name": "Sầu Riêng Ri6",
+    "category": "thuc-pham-tuoi",
+    "price": 180000,
+    "quantity": 10,
+    "image": "🧀",
+    "description": "Sầu riêng Ri6 cơm vàng, hạt lép.",
+    "featured": false,
+    "id": 85
+  },
+  {
+    "name": "Mít Thái Cắt Miếng",
+    "category": "thuc-pham-tuoi",
+    "price": 70000,
+    "quantity": 20,
+    "image": "🍈",
+    "description": "Mít Thái chín, múi to, thơm.",
+    "featured": false,
+    "id": 86
+  },
+  {
+    "name": "Gạo Lứt Đỏ",
+    "category": "do-kho",
+    "price": 36000,
+    "quantity": 60,
+    "image": "🍚",
+    "description": "Gạo lứt đỏ dùng cho người ăn kiêng.",
+    "featured": false,
+    "id": 87
+  },
+  {
+    "name": "Mì Gói Tôm Chua Cay",
+    "category": "do-kho",
+    "price": 5000,
+    "quantity": 200,
+    "image": "🍜",
+    "description": "Mì gói vị tôm chua cay, tiện lợi.",
+    "featured": false,
+    "id": 88
+  },
+  {
+    "name": "Phở Khô",
+    "category": "do-kho",
+    "price": 26000,
+    "quantity": 70,
+    "image": "🍜",
+    "description": "Bánh phở khô nấu phở bò, phở gà.",
+    "featured": false,
+    "id": 89
+  },
+  {
+    "name": "Cháo Gói Ăn Liền",
+    "category": "do-kho",
+    "price": 9000,
+    "quantity": 120,
+    "image": "🥣",
+    "description": "Cháo gói nhiều vị, pha nước sôi là dùng.",
+    "featured": false,
+    "id": 90
+  },
+  {
+    "name": "Nui Ống",
+    "category": "do-kho",
+    "price": 26000,
+    "quantity": 80,
+    "image": "🍝",
+    "description": "Nui ống dùng nấu nui xào, nui nước.",
+    "featured": false,
+    "id": 91
+  },
+  {
+    "name": "Bột Mì Đa Dụng",
+    "category": "do-kho",
+    "price": 29000,
+    "quantity": 70,
+    "image": "🌾",
+    "description": "Bột mì đa dụng, làm bánh, chiên gà.",
+    "featured": false,
+    "id": 92
+  },
+  {
+    "name": "Bột Năng",
+    "category": "do-kho",
+    "price": 18000,
+    "quantity": 70,
+    "image": "🌾",
+    "description": "Bột năng dùng làm bánh, tạo độ sệt.",
+    "featured": false,
+    "id": 93
+  },
+  {
+    "name": "Bột Chiên Giòn",
+    "category": "do-kho",
+    "price": 22000,
+    "quantity": 80,
+    "image": "🍤",
+    "description": "Bột chiên giòn, áo tôm, gà.",
+    "featured": false,
+    "id": 94
+  },
+  {
+    "name": "Đậu Đỏ Hạt",
+    "category": "do-kho",
+    "price": 38000,
+    "quantity": 60,
+    "image": "🫘",
+    "description": "Đậu đỏ hạt, nấu chè, làm nhân bánh.",
+    "featured": false,
+    "id": 95
+  },
+  {
+    "name": "Lạc (Đậu Phộng) Rang",
+    "category": "do-kho",
+    "price": 30000,
+    "quantity": 80,
+    "image": "🥜",
+    "description": "Đậu phộng rang sẵn, ăn vặt, dùng nấu ăn.",
+    "featured": false,
+    "id": 96
+  },
+  {
+    "name": "Hạt Điều Rang Muối",
+    "category": "do-kho",
+    "price": 120000,
+    "quantity": 40,
+    "image": "🥜",
+    "description": "Hạt điều rang muối, ăn vặt dinh dưỡng.",
+    "featured": false,
+    "id": 97
+  },
+  {
+    "name": "Tương Ớt Chai",
+    "category": "gia-vi",
+    "price": 18000,
+    "quantity": 90,
+    "image": "🌶️",
+    "description": "Tương ớt chai, dùng chấm, trộn.",
+    "featured": false,
+    "id": 98
+  },
+  {
+    "name": "Tương Cà Chai",
+    "category": "gia-vi",
+    "price": 18000,
+    "quantity": 80,
+    "image": "🍅",
+    "description": "Tương cà ăn kèm khoai tây chiên, xúc xích.",
+    "featured": false,
+    "id": 99
+  },
+  {
+    "name": "Dầu Hào",
+    "category": "gia-vi",
+    "price": 28000,
+    "quantity": 70,
+    "image": "🧴",
+    "description": "Dầu hào dùng xào rau, thịt.",
+    "featured": false,
+    "id": 100
+  },
+  {
+    "name": "Giấm Gạo",
+    "category": "gia-vi",
+    "price": 22000,
+    "quantity": 60,
+    "image": "🧴",
+    "description": "Giấm gạo dùng trộn gỏi, nấu ăn.",
+    "featured": false,
+    "id": 101
+  },
+  {
+    "name": "Sa Tế Tôm",
+    "category": "gia-vi",
+    "price": 26000,
+    "quantity": 50,
+    "image": "🌶️",
+    "description": "Sa tế tôm cay, dùng ướp nướng, ăn lẩu.",
+    "featured": false,
+    "id": 102
+  },
+  {
+    "name": "Ngũ Vị Hương",
+    "category": "gia-vi",
+    "price": 15000,
+    "quantity": 60,
+    "image": "🧂",
+    "description": "Bột ngũ vị hương dùng ướp vịt quay, heo quay.",
+    "featured": false,
+    "id": 103
+  },
+  {
+    "name": "Lá Nguyệt Quế Khô",
+    "category": "gia-vi",
+    "price": 26000,
+    "quantity": 40,
+    "image": "🌿",
+    "description": "Lá nguyệt quế dùng nấu bò hầm, sốt Âu.",
+    "featured": false,
+    "id": 104
+  },
+  {
+    "name": "Pepsi Lon",
+    "category": "do-uong",
+    "price": 10000,
+    "quantity": 120,
+    "image": "🥤",
+    "description": "Pepsi lon 330ml giải khát.",
+    "featured": false,
+    "id": 105
+  },
+  {
+    "name": "7Up Lon",
+    "category": "do-uong",
+    "price": 10000,
+    "quantity": 120,
+    "image": "🥤",
+    "description": "7Up lon vị chanh tươi mát.",
+    "featured": false,
+    "id": 106
+  },
+  {
+    "name": "Fanta Cam Lon",
+    "category": "do-uong",
+    "price": 10000,
+    "quantity": 120,
+    "image": "🥤",
+    "description": "Fanta vị cam ngọt dịu.",
+    "featured": false,
+    "id": 107
+  },
+  {
+    "name": "Trà Túi Lọc",
+    "category": "do-uong",
+    "price": 42000,
+    "quantity": 60,
+    "image": "🍵",
+    "description": "Trà túi lọc, pha uống nóng hoặc lạnh.",
+    "featured": false,
+    "id": 108
+  },
+  {
+    "name": "Cà Phê Hòa Tan 3in1",
+    "category": "do-uong",
+    "price": 55000,
+    "quantity": 80,
+    "image": "☕",
+    "description": "Cà phê hòa tan 3in1 tiện lợi.",
+    "featured": false,
+    "id": 109
+  },
+  {
+    "name": "Cà Phê Rang Xay",
+    "category": "do-uong",
+    "price": 85000,
+    "quantity": 40,
+    "image": "☕",
+    "description": "Cà phê rang xay nguyên chất.",
+    "featured": false,
+    "id": 110
+  },
+  {
+    "name": "Sữa Đặc Có Đường Lon",
+    "category": "do-uong",
+    "price": 28000,
+    "quantity": 60,
+    "image": "🥫",
+    "description": "Sữa đặc có đường, pha cà phê, làm bánh.",
+    "featured": false,
+    "id": 111
+  },
+  {
+    "name": "Sữa Chua Ăn Lốc",
+    "category": "do-uong",
+    "price": 38000,
+    "quantity": 40,
+    "image": "🥛",
+    "description": "Sữa chua ăn nhiều vị trái cây.",
+    "featured": false,
+    "id": 112
+  },
+  {
+    "name": "Sữa Hạt Óc Chó",
+    "category": "do-uong",
+    "price": 32000,
+    "quantity": 40,
+    "image": "🥛",
+    "description": "Sữa hạt óc chó tốt cho sức khỏe.",
+    "featured": false,
+    "id": 113
+  },
+  {
+    "name": "Nước Dừa Đóng Hộp",
+    "category": "do-uong",
+    "price": 15000,
+    "quantity": 60,
+    "image": "🥥",
+    "description": "Nước dừa đóng hộp mát lạnh.",
+    "featured": false,
+    "id": 114
+  },
+  {
+    "name": "Nước Ép Trái Cây Hỗn Hợp",
+    "category": "do-uong",
+    "price": 18000,
+    "quantity": 60,
+    "image": "🧃",
+    "description": "Nước ép trái cây hỗn hợp nhiều vị.",
+    "featured": false,
+    "id": 115
+  },
+  {
+    "name": "Rượu Vang Đỏ",
+    "category": "do-uong",
+    "price": 220000,
+    "quantity": 20,
+    "image": "🍷",
+    "description": "Rượu vang đỏ dùng cho bữa tiệc gia đình.",
+    "featured": false,
+    "id": 116
+  },
+  {
+    "name": "Bánh Quy Bơ",
+    "category": "banh-keo",
+    "price": 48000,
+    "quantity": 60,
+    "image": "🍪",
+    "description": "Bánh quy bơ giòn thơm.",
+    "featured": false,
+    "id": 117
+  },
+  {
+    "name": "Bánh Bông Lan Cuộn",
+    "category": "banh-keo",
+    "price": 38000,
+    "quantity": 50,
+    "image": "🍰",
+    "description": "Bánh bông lan cuộn mềm, ngọt nhẹ.",
+    "featured": false,
+    "id": 118
+  },
+  {
+    "name": "Snack Khoai Tây Vị BBQ",
+    "category": "banh-keo",
+    "price": 22000,
+    "quantity": 80,
+    "image": "🍟",
+    "description": "Snack khoai tây vị BBQ.",
+    "featured": false,
+    "id": 119
+  },
+  {
+    "name": "Kẹo Cứng Hương Trái Cây",
+    "category": "banh-keo",
+    "price": 26000,
+    "quantity": 70,
+    "image": "🍬",
+    "description": "Kẹo cứng nhiều vị trái cây.",
+    "featured": false,
+    "id": 120
+  },
+  {
+    "name": "Socola Thanh",
+    "category": "banh-keo",
+    "price": 32000,
+    "quantity": 60,
+    "image": "🍫",
+    "description": "Socola thanh đắng nhẹ, ngọt vừa.",
+    "featured": false,
+    "id": 121
+  },
+  {
+    "name": "Hạt Hướng Dương Rang",
+    "category": "banh-keo",
+    "price": 26000,
+    "quantity": 70,
+    "image": "🌻",
+    "description": "Hạt hướng dương rang muối.",
+    "featured": false,
+    "id": 122
+  },
+  {
+    "name": "Xúc Xích Đức Đông Lạnh",
+    "category": "do-kho",
+    "price": 65000,
+    "quantity": 50,
+    "image": "🌭",
+    "description": "Xúc xích Đức đông lạnh, chiên hoặc nướng.",
+    "featured": false,
+    "id": 123
+  },
+  {
+    "name": "Cá Viên Chiên",
+    "category": "do-kho",
+    "price": 45000,
+    "quantity": 60,
+    "image": "🍢",
+    "description": "Cá viên chiên, ăn lẩu, ăn vặt.",
+    "featured": false,
+    "id": 124
+  },
+  {
+    "name": "Bò Viên",
+    "category": "do-kho",
+    "price": 52000,
+    "quantity": 60,
+    "image": "🍡",
+    "description": "Bò viên dùng ăn lẩu, hủ tiếu.",
+    "featured": false,
+    "id": 125
+  },
+  {
+    "name": "Chả Giò Đông Lạnh",
+    "category": "do-kho",
+    "price": 58000,
+    "quantity": 50,
+    "image": "🍤",
+    "description": "Chả giò đông lạnh, chiên vàng giòn.",
+    "featured": false,
+    "id": 126
+  },
+  {
+    "name": "Pizza Đông Lạnh",
+    "category": "do-kho",
+    "price": 95000,
+    "quantity": 30,
+    "image": "🍕",
+    "description": "Pizza đông lạnh nhiều vị.",
+    "featured": false,
+    "id": 127
+  },
+  {
+    "name": "Kem Ly Nhiều Vị",
+    "category": "banh-keo",
+    "price": 18000,
+    "quantity": 80,
+    "image": "🍦",
+    "description": "Kem ly nhiều hương vị cho mùa hè.",
+    "featured": false,
+    "id": 128
+  },
+  {
+    "name": "Cơm Hộp Văn Phòng",
+    "category": "do-kho",
+    "price": 45000,
+    "quantity": 40,
+    "image": "🍱",
+    "description": "Cơm hộp đầy đủ món mặn và rau.",
+    "featured": false,
+    "id": 129
+  },
+  {
+    "name": "Sushi Hộp",
+    "category": "do-kho",
+    "price": 75000,
+    "quantity": 25,
+    "image": "🍣",
+    "description": "Sushi hộp nhiều loại, ăn liền.",
+    "featured": false,
+    "id": 130
+  },
+  {
+    "name": "Salad Rau Trộn Sẵn",
+    "category": "do-kho",
+    "price": 42000,
+    "quantity": 30,
+    "image": "🥗",
+    "description": "Salad rau trộn sẵn, ăn kèm sốt mè.",
+    "featured": false,
+    "id": 131
+  },
+  {
+    "name": "Gà Quay Nguyên Con",
+    "category": "do-kho",
+    "price": 185000,
+    "quantity": 15,
+    "image": "🍗",
+    "description": "Gà quay vàng giòn, ướp đậm đà.",
+    "featured": false,
+    "id": 132
+  },
+  {
+    "name": "Thịt Heo Quay",
+    "category": "do-kho",
+    "price": 195000,
+    "quantity": 15,
+    "image": "🥓",
+    "description": "Thịt heo quay da giòn, cắt miếng.",
+    "featured": false,
+    "id": 133
+  },
+  {
+    "name": "Bánh Mì Sandwich Gói",
+    "category": "do-kho",
+    "price": 26000,
+    "quantity": 60,
+    "image": "🍞",
+    "description": "Bánh mì sandwich mềm, dùng làm bữa sáng.",
+    "featured": false,
+    "id": 134
+  },
+  {
+    "name": "Cá Hộp Sốt Cà",
+    "category": "do-kho",
+    "price": 26000,
+    "quantity": 70,
+    "image": "🥫",
+    "description": "Cá hộp sốt cà, ăn với cơm, bánh mì.",
+    "featured": false,
+    "id": 135
+  },
+  {
+    "name": "Thịt Hộp",
+    "category": "do-kho",
+    "price": 42000,
+    "quantity": 50,
+    "image": "🥫",
+    "description": "Thịt hộp tiện lợi cho bữa ăn nhanh.",
+    "featured": false,
+    "id": 136
+  },
+  {
+    "name": "Pate Gan Hộp",
+    "category": "do-kho",
+    "price": 32000,
+    "quantity": 50,
+    "image": "🥫",
+    "description": "Pate gan ăn với bánh mì, xôi.",
+    "featured": false,
+    "id": 137
+  },
+  {
+    "name": "Đậu Hộp",
+    "category": "do-kho",
+    "price": 26000,
+    "quantity": 40,
+    "image": "🥫",
+    "description": "Đậu hộp dùng nấu nhanh các món sốt.",
+    "featured": false,
+    "id": 138
+  },
+  {
+    "name": "Bắp Hộp",
+    "category": "do-kho",
+    "price": 26000,
+    "quantity": 40,
+    "image": "🥫",
+    "description": "Bắp hộp dùng làm salad, súp.",
+    "featured": false,
+    "id": 139
   }
 ]

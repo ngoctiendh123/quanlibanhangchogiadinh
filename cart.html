@@ -27,6 +27,17 @@
                         <span>Tổng cộng:</span>
                         <span id="total">0₫</span>
                     </div>
+                    <div class="payment-method-choice">
+                        <label class="payment-option">
+                            <input type="radio" name="paymentMethod" value="COD" checked>
+                            <span>Thanh toán khi nhận hàng</span>
+                        </label>
+                        <label class="payment-option">
+                            <input type="radio" name="paymentMethod" value="QR">
+                            <span>Thanh toán qua quét mã QR</span>
+                        </label>
+                    </div>
+                    <p id="cartLoginHint" class="cart-login-hint" style="display: none;">Đặt hàng online? Vui lòng <a href="login.html?redirect=cart.html">đăng nhập</a> để thanh toán.</p>
                     <button class="btn btn-primary btn-block" id="checkoutBtn">Thanh Toán</button>
                     <a href="products.html" class="btn btn-secondary btn-block">Tiếp Tục Mua Sắm</a>
                 </div>
@@ -61,7 +72,7 @@
                 </div>
                 <div class="qr-actions">
                     <button class="btn btn-secondary" onclick="closeQRModal()">Hủy</button>
-                    <button class="btn btn-primary" onclick="confirmPayment()">Đã Thanh Toán</button>
+                    <button class="btn btn-primary" onclick="confirmPayment('QR')">Đã Thanh Toán</button>
                 </div>
             </div>
         </div>
